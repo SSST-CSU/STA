@@ -29,7 +29,7 @@
             <li><a href="index.jsp">首页</a></li>
             <li><a href="retriveTeamByPage?targetPage=1">来组团</a></li>
             <li><a href="retriveResourceByPage?targetPage=1">下资源</a></li>
-            <li><a href="#">听讲座</a></li>
+            <li><a href="lectureList.jsp">听讲座</a></li>
             <li class="am-dropdown" data-am-dropdown>
                 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                     找我们 <span class="am-icon-caret-down"></span>
