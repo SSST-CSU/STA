@@ -135,4 +135,11 @@ public class TeamServiceImplTest extends TestCase {
         teamService.removeTeam(1);
     }
 
+    @Test
+    public void testUpdate(){
+        Team team = teamService.retriveById(133);
+        team.setCurrentSize(team.getCurrentSize() - 1);
+        teamService.update(team);
+    }
+
 }

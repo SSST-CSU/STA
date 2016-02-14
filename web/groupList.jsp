@@ -100,37 +100,6 @@
 
 </div>
 
-
-<%--<div class="am-popup" id="information" style="height: auto">
-    <div class="am-popup-inner">
-        <div class="am-popup-hd">
-            <h4 class="am-popup-title">title</h4>
-      <span data-am-modal-close
-            class="am-close">&times;</span>
-        </div>
-        <div class="am-popup-bd">
-            <p>团队名称:&nbsp;<span id="title"></span></p>
-
-            <p>发起人:&nbsp;<span id="leader"></span></p>
-
-            <p>现有人数:&nbsp;<span id="nowNum"></span></p>
-
-            <p>还需人数:&nbsp;<span id="needNum"></span></p>
-
-            <p>发布日期:&nbsp;<span id="publishTime"></span></p>
-
-            <p>截止日期:&nbsp;<span id="deadline"></span></p>
-
-            <p style="margin-bottom: 0">详细说明:&nbsp;</p>
-            <span id="introduce"></span>
-        </div>
-        <div class="am-modal-footer">
-            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-            <span id="applyToJoinGroup" class="am-modal-btn" data-am-modal-confirm>申请</span>
-        </div>
-    </div>
-</div>--%>
-
 <div class="am-modal am-modal-confirm" tabindex="-1" id="groupDetailMsg">
     <div class="am-modal-dialog">
         <center>
@@ -177,7 +146,18 @@
         </div>
     </div>
 </div>
-
+<div class="am-modal am-modal-confirm" tabindex="-1" id="joinMsg">
+    <div class="am-modal-dialog">
+        <center>
+            <h3>发布组队信息</h3>
+            <h6 id="msgContent">
+            </h6>
+        </center>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm id="confirmBtn">确定</span>
+        </div>
+    </div>
+</div>
 </body>
 
 <script>
@@ -205,8 +185,10 @@
             }
             window.location.href = url;
         }
-        else
-            alert("输入不合法！");
+        else {
+            $("#msgContent").html("输入不合法！");
+            $("#joinMsg").modal({});
+        }
     });
 
     function previousPage() {
@@ -244,7 +226,8 @@
 
     function releaseGroupInfo() {
         if (${sessionScope.person == null}) {
-            alert("您还未登录，请先登录！");
+            $("#msgContent").html("您还未登录，请先登录！");
+            $("#joinMsg").modal({});
             return;
         }
         else {
@@ -256,7 +239,8 @@
     $("#applyToJoinGroup").click(function () {
 
         if (${sessionScope.person == null}) {
-            alert("请先登录，谢谢！");
+            $("#msgContent").html("您还未登录，请先登录！");
+            $("#joinMsg").modal({});
             return;
         }
 
@@ -270,10 +254,12 @@
             success: function (result) {//返回数据根据结果进行相应的处理
 
                 if (result.applyStatus == 'success') {
-                    alert("申请成功，" + result.reason);
+                    $("#msgContent").html("申请成功，" + result.reason);
+                    $("#joinMsg").modal({});
                 }
                 else {
-                    alert("申请失败，" + result.reason);
+                    $("#msgContent").html("申请失败，" + result.reason);
+                    $("#joinMsg").modal({});
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -1,5 +1,6 @@
 package service;
 
+import domain.Person;
 import domain.Team;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,10 +115,22 @@ public interface TeamService {
      */
     public List<Team> retriveByPageAndKey(int targetPage, String key);
 
-    /**根据关键字查询查询结果的总页数
+    /**
+     * 根据关键字查询查询结果的总页数
+     *
      * @param key
      * @return
      */
     public int retrivePageNumberByKey(String key);
+
+    /**
+     * 接受用户加入团队的申请
+     */
+    public String acceptApplication(int teamId, int personId);
+
+    /**更新团队信息
+     * @param team
+     */
+    public void update(Team team);
 
 }

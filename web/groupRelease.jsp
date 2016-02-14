@@ -118,6 +118,19 @@
     <h2 id="outIntro" style="display: none;color: rgb(0, 186, 255)">说明：<br><span style="color: white" contenteditable
                                                                                  id="groupIntro"></span></h2>
 </div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="releaseMsg">
+    <div class="am-modal-dialog">
+        <center>
+            <h3>发布组队信息</h3>
+            <h6>
+                信息发布成功！
+            </h6>
+        </center>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm id="confirmBtn">确定</span>
+        </div>
+    </div>
+</div>
 </body>
 <script>
     $("#titleNext").click(function (event) {
@@ -256,8 +269,8 @@
             success: function (result) {//返回数据根据结果进行相应的处理
 
                 if (result.releaseStatus == 'success') {
-                    alert("发布成功！");
-                    window.location.href = "retriveTeamByPage?targetPage=1";
+                    var options = {"closeViaDimmer":false};
+                    $("#releaseMsg").modal(options);
                 }
                 else{
                     alert("发布失败！");
@@ -267,6 +280,10 @@
                 alert(errorThrown);
             }
         });
+    });
+
+    $("#confirmBtn").click(function(){
+        window.location.href = "retriveTeamByPage?targetPage=1";
     });
 
     $(function () {
