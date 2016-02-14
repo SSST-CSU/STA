@@ -34,6 +34,9 @@
         <li<c:if test='${param.site == "siteMember"}'>
             class="am-active"
         </c:if>><a href="siteMember.jsp?site=siteMember">科协成员&nbsp;<span class="am-icon-send"></span></a></li>
+        <li<c:if test='${requestScope.site == "siteMessage"}'>
+            class="am-active"
+        </c:if>><a href="siteMessage?targetPage=1">消息通知&nbsp;<span class="am-icon-envelope"></span></a></li>
     </ul>
 
 

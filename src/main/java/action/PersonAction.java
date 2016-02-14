@@ -1,6 +1,7 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import domain.Message;
 import domain.Person;
 import domain.Team;
 import org.apache.commons.io.FileUtils;
@@ -16,8 +17,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import service.MessageService;
 import service.PersonService;
 import service.TeamService;
+import util.ConstantUtil;
 import util.ImageUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +42,7 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
     HttpServletResponse response;
     PersonService personService;
     TeamService teamService;
+    MessageService messageService;
     String saveItem;
     private Person person;
 
@@ -51,6 +55,7 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         personService = (PersonService) applicationContext.getBean("PersonService");
         teamService = (TeamService) applicationContext.getBean("TeamService");
+        messageService = (MessageService) applicationContext.getBean("MessageService");
     }
 
     @Action(value = "savePersonInfo")
@@ -186,9 +191,55 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
 
     @Action(value = "getRidOfGroup")
     public void getRidOfGroup() throws Exception {
-        String personId = request.getParameter("pId");
-        String teamId = request.getParameter("pTeamId");
-        teamService.getRidOfGroup(Integer.parseInt(teamId), Integer.parseInt(personId));
+        int personId = Integer.parseInt(request.getParameter("pId"));
+        int teamId = Integer.parseInt(request.getParameter("pTeamId"));
+
+        Team team = teamService.retriveById(teamId);
+        person = personService.retriveById(personId);
+        System.out.println(team.getName() + "--" + person.getName());
+
+        System.out.println(team.getCurrentSize());
+        team.setCurrentSize(team.getCurrentSize() - 1);
+        System.out.println(team.getCurrentSize());
+        teamService.update(team);
+
+        messageService.quitMsg(person.getId(), person.getName(), team.getName(), team.getMinisterId());
+        teamService.getRidOfGroup(teamId, personId);
+        for (Person tPerson : team.getPersonList()) {
+            messageService.quitMsg(person.getId(), person.getName(), team.getName(), tPerson.getId());
+        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("operateStatus", "success");
+
+        response.setContentType("text/html;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.getWriter().write(jsonObject.toString());
+    }
+
+    @Action(value = "removePerson")
+    public void removePerson() throws Exception {
+        int personId = Integer.parseInt(request.getParameter("pId"));
+        int teamId = Integer.parseInt(request.getParameter("pTeamId"));
+
+        Team team = teamService.retriveById(teamId);
+        person = personService.retriveById(personId);
+        System.out.println(team.getName() + "--" + person.getName());
+
+        System.out.println(team.getCurrentSize());
+        team.setCurrentSize(team.getCurrentSize() - 1);
+        System.out.println(team.getCurrentSize());
+        teamService.update(team);
+
+        messageService.removePerson(person.getId(), person.getName(), team.getName(), team.getMinisterId());
+
+        Person leader = personService.retriveById(team.getMinisterId());
+        messageService.putAwayByTeam(leader.getId(), leader.getName(), team.getName(), person.getId());
+
+        teamService.getRidOfGroup(teamId, personId);
+        for (Person tPerson : team.getPersonList()) {
+            messageService.removePerson(person.getId(), person.getName(), team.getName(), tPerson.getId());
+        }
+
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("operateStatus", "success");
@@ -198,10 +249,20 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         response.getWriter().write(jsonObject.toString());
     }
 
+
     @Action(value = "teamFallingApart")
     public void teamFallingApart() throws Exception {
-        String teamId = request.getParameter("teamId");
-        teamService.removeTeam(Integer.parseInt(teamId));
+        int teamId = Integer.parseInt(request.getParameter("teamId"));
+
+        Team team = teamService.retriveById(teamId);
+
+        person = personService.retriveById(team.getMinisterId());
+
+        messageService.disbandedReleaseTeam(team.getName(), team.getMinisterId());
+        for (Person tPerson : team.getPersonList()) {
+            messageService.disbandedJoinTeam(person.getId(), person.getName(), team.getName(), tPerson.getId());
+        }
+        teamService.removeTeam(teamId);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("operateStatus", "success");
@@ -209,6 +270,76 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
         response.getWriter().write(jsonObject.toString());
+    }
+
+    @Action(value = "siteMessage", results = {
+            @Result(name = SUCCESS, location = "/siteMessage.jsp")
+    })
+    public String siteMessage() throws Exception {
+        person = (Person) session.get("person");
+        System.out.println(person.getId());
+        int targetPage = Integer.parseInt(request.getParameter("targetPage"));
+        int pageNumber = messageService.retrivePageNumberByPageAndPersonId(person.getId());
+        if (targetPage <= 1) targetPage = 1;
+        else if (targetPage >= pageNumber) targetPage = pageNumber;
+
+        List<Message> messages = messageService.retriveByPage(targetPage, person.getId());
+
+        request.setAttribute("site", "siteMessage");
+        session.put("messages", messages);
+        session.put("pageSize", ConstantUtil.NUMBER_OF_RECORDS_IN_SITE_MESSAGE);
+        session.put("targetPage", targetPage);
+        return SUCCESS;
+    }
+
+    @Action(value = "rejectApplyToJoin")
+    public void rejectApplyToJoin() throws Exception {
+        int messageId = Integer.parseInt(request.getParameter("messageId"));
+        Message message = messageService.retriveById(messageId);
+        message.setOperatable(3);
+        messageService.update(message);
+
+        int receiverId = Integer.parseInt(request.getParameter("receiverId"));
+        int teamId = Integer.parseInt(request.getParameter("teamId"));
+        Person receiver = personService.retriveById(receiverId);
+        person = (Person) session.get("person");
+        Team team = teamService.retriveById(teamId);
+
+        messageService.applyToJoinFailMsg(person.getId(), person.getName(), team.getName(), receiver.getId());
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", "success");
+
+        response.setContentType("text/html;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.getWriter().write(jsonObject.toString());
+    }
+
+    @Action(value = "accpetApplyToJoin")
+    public void accpetApplyToJoin() throws Exception {
+        int messageId = Integer.parseInt(request.getParameter("messageId"));
+        Message message = messageService.retriveById(messageId);
+        message.setOperatable(2);
+        messageService.update(message);
+
+        int receiverId = Integer.parseInt(request.getParameter("receiverId"));
+        int teamId = Integer.parseInt(request.getParameter("teamId"));
+
+        Person newComer = personService.retriveById(receiverId);
+        person = (Person) session.get("person");
+        Team team = teamService.retriveById(teamId);
+
+        messageService.applyToJoinSuccessMsg(person.getId(), person.getName(), team.getName(), newComer.getId());
+
+        for (Person tPerson : team.getPersonList()) {
+            messageService.newComerMsg(newComer.getId(), newComer.getName(), team.getName(), tPerson.getId());
+        }
+
+        String result = teamService.acceptApplication(team.getId(), newComer.getId());
+
+        response.setContentType("text/html;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.getWriter().write(result);
     }
 
     @Override

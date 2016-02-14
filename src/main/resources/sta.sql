@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2016-02-01 19:31:23
+Date: 2016-02-14 18:08:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -114,6 +114,50 @@ CREATE TABLE `lecture_person` (
 INSERT INTO `lecture_person` VALUES ('1', '1', '3');
 
 -- ----------------------------
+-- Table structure for message
+-- ----------------------------
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+  `id` int(11) NOT NULL auto_increment,
+  `personId` int(11) default NULL,
+  `personName` varchar(255) default NULL,
+  `operatable` int(11) default NULL,
+  `teamId` int(11) default NULL,
+  `teamName` varchar(255) default NULL,
+  `occurName` varchar(255) default NULL,
+  `occurTime` varchar(255) default NULL,
+  `occurPlace` varchar(255) default NULL,
+  `time` varchar(255) default NULL,
+  `messageType` int(11) default NULL,
+  `receiverId` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of message
+-- ----------------------------
+INSERT INTO `message` VALUES ('1', '49', 'sad', '1', '135', 'sda', null, null, null, '2016-02-14', '1', '50');
+INSERT INTO `message` VALUES ('2', '49', 'zxzxzx', '1', '134', 'starveTogether', null, null, null, '2016-02-14', '1', '50');
+INSERT INTO `message` VALUES ('3', '49', 'zxzxzx', '0', '0', 'starveTogether', null, null, null, '2016-02-14', '2', '50');
+INSERT INTO `message` VALUES ('4', '49', 'zxzxzx', '0', '0', 'starveTogether', null, null, null, '2016-02-14', '3', '50');
+INSERT INTO `message` VALUES ('5', '49', 'zxzxzx', '0', '0', 'starveTogether', null, null, null, '2016-02-14', '4', '50');
+INSERT INTO `message` VALUES ('6', '49', 'zxzxzx', '0', '0', 'starveTogether', null, null, null, '2016-02-14', '5', '50');
+INSERT INTO `message` VALUES ('7', '0', null, '0', '0', null, '大数据讲座', '2015-10-15', '世纪A101', '2016-02-14', '6', '50');
+INSERT INTO `message` VALUES ('9', '0', null, '0', '0', '我要开始标车啦！', null, null, null, '2016-02-14', '8', '50');
+INSERT INTO `message` VALUES ('10', '49', 'zxzxzx', '0', '0', '哈哈', null, null, null, '2016-02-14', '9', '50');
+INSERT INTO `message` VALUES ('11', '0', null, '0', '0', 'hello', null, null, null, '2016-02-14', '10', '50');
+INSERT INTO `message` VALUES ('13', '0', null, '0', '0', 'yellow', null, null, null, '2016-02-14', '11', '50');
+INSERT INTO `message` VALUES ('14', '0', null, '0', '0', null, '研发中心', '2015-10-15', '世纪A101', '2016-02-14', '7', '50');
+INSERT INTO `message` VALUES ('15', '0', null, '0', '0', null, '研发中心', '2015-10-15', '世纪A101', '2016-02-14', '7', '50');
+INSERT INTO `message` VALUES ('16', '0', null, '0', '0', '我还要发布一个信息', null, null, null, '2016-02-14', '10', '50');
+INSERT INTO `message` VALUES ('17', '0', null, '0', '0', 'dsadsa', null, null, null, '2016-02-14', '10', '50');
+INSERT INTO `message` VALUES ('18', '0', null, '0', '0', 'dsadadadsads', null, null, null, '2016-02-14', '10', '50');
+INSERT INTO `message` VALUES ('19', '0', null, '0', '0', 'dasdasfaawdawda', null, null, null, '2016-02-14', '10', '50');
+INSERT INTO `message` VALUES ('20', '25', 'eeeeee', '2', '139', 'dasdasfaawdawda', null, null, null, '2016-02-14', '1', '50');
+INSERT INTO `message` VALUES ('21', '50', 'hahaha', '0', '0', 'dasdasfaawdawda', null, null, null, '2016-02-14', '5', '25');
+INSERT INTO `message` VALUES ('22', '25', 'eeeeee', '0', '0', 'dasdasfaawdawda', null, null, null, '2016-02-14', '2', '46');
+
+-- ----------------------------
 -- Table structure for person
 -- ----------------------------
 DROP TABLE IF EXISTS `person`;
@@ -162,7 +206,6 @@ INSERT INTO `person` VALUES ('22', 'qqqqq', 'qqqqq', 'qqqq@qq.com', 'qqqq', 'qqq
 INSERT INTO `person` VALUES ('23', 'kldajdliajwdal', 'sadads', 'sadasds@qq.com', 'dwauhdjkah', '444444', null, '0', '21313141', '', '', null, 'person_portraits/dwauhdjkah.jpg', '', '');
 INSERT INTO `person` VALUES ('24', 'wwwwww', 'www', 'wwwwww@qq.com', 'wwww', 'wwwwww', null, '0', '21313141', '', '', null, 'person_portraits/wwww.jpg', '', '');
 INSERT INTO `person` VALUES ('25', 'eeeeee', 'eeee', 'eeeeee@qq.com', 'eeeeee', 'eeeeee', null, '0', '865465', '', '', null, 'person_portraits/eeeeee.jpg', '', '');
-INSERT INTO `person` VALUES ('26', 'eeeeee', 'eeee', 'eeeeee@qq.com', 'eeeeee', 'eeeeee', null, '0', '865465', '', '', null, 'person_portraits/eeeeee.jpg', '', '');
 INSERT INTO `person` VALUES ('27', 'wqeeq', 'weqwew', 'yyyy@qqq.dsf', 'yyyyyy', 'yyyyyy', null, '0', '324423523', '', '', null, 'person_portraits/yyyyyy.jpg', '', '');
 INSERT INTO `person` VALUES ('28', 'oooooo', 'ooo', 'ooo@qq.oo', 'oooooo', 'oooooo', null, '0', '93822979', '', '', null, 'person_portraits/oooooo.jpg', '', '');
 INSERT INTO `person` VALUES ('29', 'wsj', '12314', 'wsj@qq.com', 'wsj', 'qq1111', null, '0', '2151244221', '', '', null, 'person_portraits/wsj.jpg', '', '');
@@ -272,9 +315,9 @@ INSERT INTO `resource` VALUES ('63', 'Objective-C40', '一个比较老旧的用�
 INSERT INTO `resource` VALUES ('64', 'PHP41', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/dropdowns.html', '2016-02-01', '1000.0', '0');
 INSERT INTO `resource` VALUES ('65', 'Objective-C41', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/dropdowns.html', '2016-02-01', '1000.0', '0');
 INSERT INTO `resource` VALUES ('66', 'PHP42', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/dropdowns.html', '2016-02-01', '1000.0', '0');
-INSERT INTO `resource` VALUES ('67', 'Objective-C42', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/dropdowns.html', '2016-02-01', '1000.0', '0');
-INSERT INTO `resource` VALUES ('70', 'hello', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/kexie.zip', '2016-02-01', '1000.0', '0');
-INSERT INTO `resource` VALUES ('71', 'hello', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/kexie.zip', '2016-02-01', '1000.0', '4');
+INSERT INTO `resource` VALUES ('67', 'Objective-C42', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/dropdowns.html', '2016-02-01', '1000.0', '2');
+INSERT INTO `resource` VALUES ('70', 'hello', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/kexie.zip', '2016-02-01', '1000.0', '2');
+INSERT INTO `resource` VALUES ('71', 'hello', '一个比较老旧的用于开发window应用程序的开发环境', 'resource/kexie.zip', '2016-02-01', '1000.0', '20');
 
 -- ----------------------------
 -- Table structure for team
@@ -331,6 +374,12 @@ INSERT INTO `team` VALUES ('130', '芒果团队9', '5', '0', '一个专注于帮
 INSERT INTO `team` VALUES ('131', '芒果团队10', '5', '0', '一个专注于帮助聋哑人的大学生团队', '#', '3', '2015-11-11', 'Mon Jan 25 14:57:20 CST 2016');
 INSERT INTO `team` VALUES ('132', 'helloman', '5', '1', '我们团队特NB，来了绝对拿国奖，现在我们团队已经完成了队长选举，没错就是本大爷，现在还需要一个给本大爷出创意的和一个编代码的，像蹭我的光就赶紧来！', null, '46', '2016-01-31', 'Fri Jan 29 15:27:26 CST 2016');
 INSERT INTO `team` VALUES ('133', 'what the fuck', '5', '5', '现在手上已有创意，现征集一位代码大神，万分感激', null, '46', '2016-05-13', '2016-01-29');
+INSERT INTO `team` VALUES ('134', 'starveTogether', '7', '2', '没错，下现在就是差一个打酱油的！', null, '25', '2016-02-12', '2016-02-11');
+INSERT INTO `team` VALUES ('135', '没错，我又要开始飙车啦，哈哈哈', '6', '1', '刚开会尽快尽快汇款', null, '50', '2016-02-29', '2016-02-14');
+INSERT INTO `team` VALUES ('136', '我还要发布一个信息', '4', '1', 'sadadasd', null, '50', '2016-02-26', '2016-02-14');
+INSERT INTO `team` VALUES ('137', 'dsadsa', '3', '1', 'asdasd', null, '50', '2016-02-26', '2016-02-14');
+INSERT INTO `team` VALUES ('138', 'dsadadadsads', '6', '1', 'dsadadadasd', null, '50', '2016-02-27', '2016-02-14');
+INSERT INTO `team` VALUES ('139', 'dasdasfaawdawda', '6', '3', 'sdadadxzczxcz', null, '50', '2016-02-20', '2016-02-14');
 
 -- ----------------------------
 -- Table structure for team_person
@@ -358,6 +407,9 @@ INSERT INTO `team_person` VALUES ('5', '133', '50');
 INSERT INTO `team_person` VALUES ('6', '133', '49');
 INSERT INTO `team_person` VALUES ('7', '133', '47');
 INSERT INTO `team_person` VALUES ('8', '133', '48');
+INSERT INTO `team_person` VALUES ('9', '134', '46');
+INSERT INTO `team_person` VALUES ('10', '139', '46');
+INSERT INTO `team_person` VALUES ('11', '139', '25');
 
 -- ----------------------------
 -- Table structure for test

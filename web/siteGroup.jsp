@@ -301,7 +301,7 @@
 //                alert(pId + pName + pTeamId);
                 $.ajax({
                     type: "POST",  //提交方式
-                    url: "getRidOfGroup",//路径
+                    url: "removePerson",//路径
                     dataType: "json",//返回的json格式的数据
                     data: {
                         "pId": pId,
@@ -313,6 +313,7 @@
                             $('#removePersonResultMsg').modal({
                                 onConfirm: function (options) {
                                     $('#groupDetailMsg').modal({});
+                                    window.location.href = "siteGroupMessage";
                                 }
                             });
                         }

@@ -29,6 +29,7 @@
                 <value>domain.Lecture</value>
                 <value>domain.Resource</value>
                 <value>domain.Team</value>
+                <value>domain.Message</value>
             </list>
         </property>
         <property name="hibernateProperties">

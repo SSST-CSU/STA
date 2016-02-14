@@ -1,6 +1,7 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import domain.Message;
 import domain.Person;
 import domain.Team;
 import org.apache.struts2.convention.annotation.Action;
@@ -13,6 +14,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import service.MessageService;
 import service.PersonService;
 import service.TeamService;
 import util.ConstantUtil;
@@ -37,6 +39,7 @@ public class TeamAction extends ActionSupport implements ServletRequestAware, Se
     HttpServletResponse response;
     TeamService teamService;
     PersonService personService;
+    MessageService messageService;
 
     private Team releaseTeam;
 
@@ -44,6 +47,7 @@ public class TeamAction extends ActionSupport implements ServletRequestAware, Se
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         teamService = (TeamService) applicationContext.getBean("TeamService");
         personService = (PersonService) applicationContext.getBean("PersonService");
+        messageService = (MessageService) applicationContext.getBean("MessageService");
     }
 
     @Override
@@ -135,6 +139,8 @@ public class TeamAction extends ActionSupport implements ServletRequestAware, Se
         releaseTeam.setMinisterId(person.getId());
         teamService.add(releaseTeam);
 
+        messageService.releaseTeam(releaseTeam.getName(), person.getId());
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("releaseStatus", "success");
 
@@ -159,5 +165,4 @@ public class TeamAction extends ActionSupport implements ServletRequestAware, Se
             response.getWriter().write(jsonObject.toString());
         } else response.getWriter().write(msg);
     }
-
 }
