@@ -53,6 +53,7 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
     public PersonAction() {
         super();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+
         personService = (PersonService) applicationContext.getBean("PersonService");
         teamService = (TeamService) applicationContext.getBean("TeamService");
         messageService = (MessageService) applicationContext.getBean("MessageService");
