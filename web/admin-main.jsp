@@ -75,7 +75,7 @@
           <th>序号</th>
           <th>比赛名称</th>
           <th>比赛时间</th>
-          <th>操作<a class="button button-tiny button-pill button-primary" target="_blank" href="admin-addComprtition.jsp"
+          <th>操作<a class="button button-tiny button-pill button-primary" target="_blank" href="admin-addCompetition.jsp"
                    style="margin-left: 10%">添加新赛事</a></th>
         </tr>
         </thead>
