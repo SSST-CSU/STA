@@ -85,7 +85,7 @@
           <td>1</td>
           <td>软件创新大赛</td>
           <td>每年3月~12月</td>
-          <td><a href="admin-competition.jsp" class="button button-royal button-tiny" target="_blank">编辑资料</a>
+          <td><a href="admin-com.jsp" class="button button-royal button-tiny" target="_blank">编辑资料</a>
             <a class="button button-caution button-tiny">删除</a></td>
         </tr>
         </tbody>
