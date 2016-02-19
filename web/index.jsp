@@ -90,7 +90,7 @@
 
 
   <div style="height: auto;width: 100%">
-    <img src="img/main/mainBg2.png" class="bgImg" id="bg"/>
+    <img src="img/main/mainBg.png" class="bgImg" id="bg"/>
     <div class="midContent">
       <h1 class="title" style="font-size: 50px;margin-top: 0px;margin-bottom: 0px" data-am-scrollspy="{animation:'scale-down'}">中南大学软件学院<br>科学技术协会</h1>
       <p><b class="title" style="font-size: 20px;color: #efefef" data-am-scrollspy="{animation:'scale-down',delay: 300}">为了正在进步的你</b></p>
