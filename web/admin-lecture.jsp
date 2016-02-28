@@ -27,7 +27,8 @@
                 <caption>
                     <center>
                         <div class="input-group" style="width: 50vw;">
-                            <input id="searchKey" type="text" class="form-control" placeholder="用输入要查找的讲座名称的关键字" value="${sessionScope.key}"
+                            <input id="searchKey" type="text" class="form-control" placeholder="用输入要查找的讲座名称的关键字"
+                                   value="${sessionScope.key}"
                                    aria-describedby="basic-addon">
                             <span class="input-group-addon btn btn-info" id="searchBtn">Go!</span>
                         </div>
@@ -72,7 +73,7 @@
                                        class="btn btn-success">
                                         编辑
                                     </a>
-                                    <a onclick="deleteLectureModal()" class="btn btn-success">
+                                    <a onclick="deleteLectureModal('${lecture.id}','${lecture.name}')" class="btn btn-success">
                                         删除
                                     </a>
                                 </td>
@@ -179,7 +180,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">提交</button>
+                <button type="button" class="btn btn-primary" id="newLectureConfirmBtn">提交</button>
             </div>
         </div>
     </div>
@@ -191,12 +192,12 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">您确定要删除这条讲座信息么？</h4>
+                <h4 class="modal-title">您确定要删除“<span id="deleteLectureName"></span>”讲座信息么？</h4>
             </div>
             <div class="modal-body">
                 <center>
                     <button class="btn btn-primary" style="width: 10vw" data-dismiss="modal">别，我开玩笑的</button>
-                    <button class="btn btn-danger" style="width: 10vw">嗯，删吧</button>
+                    <button class="btn btn-danger" style="width: 10vw" id="deleteLectureConfirmBtn">嗯，删吧</button>
                 </center>
             </div>
         </div>
@@ -233,7 +234,7 @@
 
         $("#modifyConfirmBtn").unbind('click');
         $("#modifyConfirmBtn").click(function () {
-            if($("#modify-isFree").html() == "是"+ '&nbsp;<span class="caret"></span>') accessable = 1;
+            if ($("#modify-isFree").html() == "是" + '&nbsp;<span class="caret"></span>') accessable = 1;
             else accessable = 0;
             $.ajax({
                 type: "POST",  //提交方式
@@ -242,9 +243,9 @@
                 data: {
                     "id": id,
                     "name": $("#modify-name").val().trim(),
-                    "time":$("#modify-time").val().trim(),
-                    "introduce":$("#modify-introduce").val().trim(),
-                    "accessable":accessable
+                    "time": $("#modify-time").val().trim(),
+                    "introduce": $("#modify-introduce").val().trim(),
+                    "accessable": accessable
                 },//数据，这里使用的是Json格式进行传输
                 success: function (result) {//返回数据根据结果进行相应的处理
                     if (result.status == "success") {
@@ -252,7 +253,7 @@
                         $("#msg").modal({backdrop: false});
 
                         $("#msgBtn").unbind('click');
-                        $("#msgBtn").click(function(){
+                        $("#msgBtn").click(function () {
                             window.location.reload();
                         });
                         $("#modifyConpetitionModal").modal("hide");
@@ -269,11 +270,93 @@
     function newLectureModal() {
         $(".selectLabel").html("是否自由参加" + '&nbsp;<span class="caret"></span>');
         $("#newLectureModal").modal();
-    }
-    function deleteLectureModal() {
-        $("#deleteLectureModal").modal();
-    }
 
+        $("#newLectureConfirmBtn").unbind('click');
+        $("#newLectureConfirmBtn").click(function () {
+            var newName = $("#new-name").val().trim();
+            var newTime = $("#new-time").val().trim();
+            var newIntroduce = $("#new-introduce").val().trim();
+            var accessable;
+            if ($("#new-isFree").html() == "否" + '&nbsp;<span class="caret"></span>') accessable = 0;
+            else accessable = 1;
+
+            if(newName.length<1){
+                $("#msgContent").html("讲座名称不能为空！");
+                $("#msg").modal();
+                return;
+            }else if(newTime.length<1){
+                $("#msgContent").html("讲座时间不能为空！");
+                $("#msg").modal();
+                return;
+            }else if(newIntroduce.length<1){
+                $("#msgContent").html("讲座简介不能为空！");
+                $("#msg").modal();
+                return;
+            }else{
+
+                $.ajax({
+                    type: "POST",  //提交方式
+                    url: "adminNewLecture",//路径
+                    dataType: "json",//返回的json格式的数据
+                    data: {
+                        "name": newName,
+                        "time": newTime,
+                        "introduce": newIntroduce,
+                        "accessable": accessable
+                    },//数据，这里使用的是Json格式进行传输
+                    success: function (result) {//返回数据根据结果进行相应的处理
+                        if (result.status == "success") {
+                            $("#msgContent").html("<span style='color: green'>添加成功！</span>");
+                            $("#msg").modal({backdrop: false});
+
+                            $("#msgBtn").unbind('click');
+                            $("#msgBtn").click(function () {
+                                window.location.reload();
+                            });
+                            $("#newLectureModal").modal("hide");
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+
+            }
+        });
+
+    }
+    function deleteLectureModal(id, name) {
+        $("#deleteLectureName").html(name);
+        $("#deleteLectureModal").modal();
+        $("#deleteLectureConfirmBtn").unbind('click');
+        $("#deleteLectureConfirmBtn").click(function () {
+            $.ajax({
+                type: "POST",  //提交方式
+                url: "deleteLecture",//路径
+                dataType: "json",//返回的json格式的数据
+                data: {
+                    "id": id
+                },//数据，这里使用的是Json格式进行传输
+                success: function (result) {//返回数据根据结果进行相应的处理
+                    if (result.status == "success") {
+                        $("#msgContent").html("<span style='color: green'>删除成功！</span>");
+                        $("#msg").modal({backdrop: false});
+
+                        $("#msgBtn").unbind('click');
+                        $("#msgBtn").click(function () {
+                            $("#deleteLectureModal").modal("hide");
+                            window.location.reload();
+                        });
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+
+
+    }
 
     $("ul.dropdown-menu li").click(function () {
         $(".selectLabel").html(this.innerHTML + '&nbsp;<span class="caret"></span>');

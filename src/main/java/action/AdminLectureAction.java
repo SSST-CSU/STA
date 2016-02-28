@@ -68,6 +68,7 @@ public class AdminLectureAction extends ActionSupport implements ServletRequestA
 
         return SUCCESS;
     }
+
     @Action(value = "adminModifyLecture")
     public void adminModifyLecture() throws Exception {
         String id = request.getParameter("id");
@@ -93,6 +94,48 @@ public class AdminLectureAction extends ActionSupport implements ServletRequestA
 
         response.getWriter().write(jsonObject.toString());
     }
+
+    @Action(value = "deleteLecture")
+    public void deleteLecture() throws Exception {
+        String  id = request.getParameter("id");
+        Lecture lecture = lectureService.retriveById(id);
+        lectureService.delete(lecture);
+
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("html/text;charset=utf-8");
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", "success");
+
+        response.getWriter().write(jsonObject.toString());
+    }
+
+    @Action(value = "adminNewLecture")
+    public void adminNewLecture() throws Exception {
+        String name = request.getParameter("name");
+        String time = request.getParameter("time");
+        String introduce = request.getParameter("introduce");
+        String accessable = request.getParameter("accessable");
+
+        System.out.println(accessable);
+
+        Lecture lecture = new Lecture();
+        lecture.setName(name);
+        lecture.setTime(time);
+        lecture.setIntroduce(introduce);
+        lecture.setAccessable(accessable);
+        lectureService.add(lecture);
+
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("html/text;charset=utf-8");
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", "success");
+
+        response.getWriter().write(jsonObject.toString());
+    }
+
+
 
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
