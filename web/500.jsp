@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>404</title>
+  <title>500</title>
   <script src="frame/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
   <link rel="stylesheet" href="css/button.css">
   <link rel="stylesheet" href="css/animate.css">
