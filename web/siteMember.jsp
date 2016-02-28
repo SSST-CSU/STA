@@ -90,7 +90,7 @@
 <script>
 
     function applyToJoinSTA(){
-        window.location.href = "/sta/applyForm.jsp";
+        window.location.href = "applyForm.jsp";
     }
 
     function sendMessage(type,sendType){

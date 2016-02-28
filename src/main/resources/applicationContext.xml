@@ -13,7 +13,7 @@
     <!--jdbc prop-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
           p:driverClass="com.mysql.jdbc.Driver"
-          p:jdbcUrl="jdbc:mysql://localhost:3306/sta"
+          p:jdbcUrl="jdbc:mysql://localhost:3306/sta?useUnicode=true&amp;characterEncoding=utf-8"
           p:user="root"
           p:password="root">
     </bean>
@@ -40,6 +40,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="show_sql">true</prop>
             </props>
         </property>
     </bean>

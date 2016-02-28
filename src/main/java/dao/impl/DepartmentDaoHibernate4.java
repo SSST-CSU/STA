@@ -22,8 +22,10 @@ public class DepartmentDaoHibernate4 extends BaseDaoHibernate4<Department> imple
     public Department retriveByName(String name) {
         Session session = getSessionFactory().openSession();
         Query query = session.createQuery("from Department where name = ?");
+        System.out.println(name);
         query.setString(0, name);
         List<Department> departments = query.list();
+        System.out.println("departments size:"+departments.size());
         if (departments.size() > 0) return departments.get(0);
         else return null;
     }

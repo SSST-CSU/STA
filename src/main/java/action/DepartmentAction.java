@@ -49,11 +49,17 @@ public class DepartmentAction extends ActionSupport implements ServletRequestAwa
     public String retriveDepartment() throws Exception {
 
         String targetDepartment = request.getParameter("targetDepartment");
+
+        System.out.println(targetDepartment == null);
+
         if (targetDepartment == null || targetDepartment.equals("")) {
             targetDepartment = Attach.PRESIDIUM;
         }
 
+        System.out.println(targetDepartment);
+
         Department department = departmentService.retriveByName(targetDepartment);
+
         System.out.println(department.toString());
 
         List<Person> members = personService.retriveByDepartment(department.getName());

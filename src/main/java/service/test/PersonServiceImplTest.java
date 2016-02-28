@@ -54,9 +54,9 @@ public class PersonServiceImplTest extends TestCase {
     @Test
     public void testRegisterPerson() throws Exception {
         Person person = new Person();
-        person.setName("haha");
-        person.setMail("zhaoliu@qq.com");
-        person.setAccount("zhaoliu");
+        person.setName("sadasdadasd");
+        person.setMail("zhsssssssssssssssssssssssssssssssssaoliu@qq.com");
+        person.setAccount("adasdazhaoliu");
         person.setPassword("123456");
         person.setTel("1234567891234");
         person.setQq("324324243");
@@ -106,5 +106,9 @@ public class PersonServiceImplTest extends TestCase {
 
         System.out.println("Process Completed Successfully");
 
+    }
+
+    @Test
+    public void testUpdate(){
     }
 }
