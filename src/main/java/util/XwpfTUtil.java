@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 public class XwpfTUtil {
 
-    String filePath = "D:\\sta.docx";
+    /*String filePath = "/sta.docx";
     InputStream is;
     XWPFDocument doc;
     Map<String, Object> params = new HashMap<String, Object>();
@@ -45,7 +45,7 @@ public class XwpfTUtil {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 
     /**
@@ -53,7 +53,7 @@ public class XwpfTUtil {
      *
      * @throws Exception
      */
-    @Test
+    /*@Test
     public void testTemplateWrite() throws Exception {
         //替换段落里面的变量
         this.replaceInPara(doc, params);
@@ -63,11 +63,11 @@ public class XwpfTUtil {
         doc.write(os);
         this.close(os);
         this.close(is);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void myTest1() throws Exception {
-        /*Iterator<XWPFParagraph> iterator = doc.getParagraphsIterator();
+        *//*Iterator<XWPFParagraph> iterator = doc.getParagraphsIterator();
         XWPFParagraph para;
         while (iterator.hasNext()) {
             para = iterator.next();
@@ -79,13 +79,13 @@ public class XwpfTUtil {
         OutputStream os = new FileOutputStream("D:\\sta1.docx");
         doc.write(os);
         this.close(os);
-        this.close(is);*/
+        this.close(is);*//*
 
         System.out.println(this.matcher("报告日期：${reportDate}").find());
 
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void myReplaceInPara() {
 //        Iterator<XWPFParagraph> iterator = doc.getParagraphsIterator();
 //        XWPFParagraph para;
@@ -98,7 +98,7 @@ public class XwpfTUtil {
 
         System.out.println('{'=='{');
 
-    }
+    }*/
 
     /**
      * 替换段落里面的变量

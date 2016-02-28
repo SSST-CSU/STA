@@ -159,9 +159,10 @@ public class ApplyFormAction extends ActionSupport implements ServletRequestAwar
         XwpfTUtil xwpfTUtil = new XwpfTUtil();
 
         XWPFDocument doc;
-        String filePath = "D:\\sta.docx";
+        String fileNameInResource = "sta.docx";
         InputStream is;
-        is = new FileInputStream(filePath);
+        /*is = new FileInputStream(filePath);*/
+        is = getClass().getClassLoader().getResourceAsStream(fileNameInResource);
         doc = new XWPFDocument(is);
 
         xwpfTUtil.replaceInPara(doc, params);
