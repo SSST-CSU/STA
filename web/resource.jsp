@@ -198,7 +198,8 @@
     });
     function download(resourceId) {
         if (${sessionScope.person == null}) {
-            alert("没有登录的用户不能下载哦！");
+            $("#msgContent").html("没有登录的用户不能下载哦！");
+            $("#joinMsg").modal({});
             return;
         }
         else {
