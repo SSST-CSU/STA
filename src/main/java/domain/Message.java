@@ -26,6 +26,8 @@ public class Message {
     private String time;//消息创建时间
     private int receiverId;//消息接受者的id
 
+    private String msgContent;//消息内容
+
     /**
      * 消息类型，目前一共有7种
      * XXX 申请加入您的团队 XXX， 允许 拒绝 ------------》》》》》》》》》》》申请者名称，申请者id，团队名称，团队id
@@ -57,6 +59,7 @@ public class Message {
     public static final int UPDATE_TEAM = 11;
     public static final int REMOVE_PERSON = 12;
     public static final int PUT_AWAY_BY_TEAM = 13;
+    public static final int ADMIN_MSG = 14;
 
     public Message() {
     }
@@ -162,12 +165,22 @@ public class Message {
         this.messageType = messageType;
     }
 
+    @Column(name = "msgContent")
+    public String getMsgContent() {
+        return msgContent;
+    }
+
+    public void setMsgContent(String msgContent) {
+        this.msgContent = msgContent;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
                 "id=" + id +
                 ", personId=" + personId +
                 ", personName='" + personName + '\'' +
+                ", operatable=" + operatable +
                 ", teamId=" + teamId +
                 ", teamName='" + teamName + '\'' +
                 ", occurName='" + occurName + '\'' +
@@ -175,6 +188,7 @@ public class Message {
                 ", occurPlace='" + occurPlace + '\'' +
                 ", time='" + time + '\'' +
                 ", receiverId=" + receiverId +
+                ", msgContent='" + msgContent + '\'' +
                 ", messageType=" + messageType +
                 '}';
     }

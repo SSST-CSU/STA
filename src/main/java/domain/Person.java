@@ -17,6 +17,7 @@ public class Person {
     private String password;
     private String tel;
     private int isMenber;
+    private String department;
     private String qq;
     private String wechat;
     private String introduce;
@@ -80,6 +81,15 @@ public class Person {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Column(name = "department")
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     @Column(name = "name")

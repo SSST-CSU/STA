@@ -136,6 +136,36 @@
             <version>4.11</version>
         </dependency>
 
+        <!--导入操作excel所需要的jar包-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>
+                poi</artifactId>
+            <version>3.10-beta2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.10-beta2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.10-beta2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>3.0.2-FINAL</version>
+        </dependency>
+
+
+
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>

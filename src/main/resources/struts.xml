@@ -5,4 +5,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+        <constant name="struts.multipart.parser" value="util.upload.MyMultiPartRequest" />
+        <constant name="struts.multipart.handler" value="util.upload.MyMultiPartRequest" />
+        <constant name="struts.multipart.maxSize" value="2000000000"/>
 </struts>

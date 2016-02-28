@@ -1,5 +1,6 @@
 package service.test;
 
+import domain.Person;
 import domain.Resource;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -94,6 +95,7 @@ public class ResourceServiceImplTest extends TestCase {
         Resource resource = resourceService.retriveByPageNumber("1").get(0);
         SimpleDateFormat dateFormat =new SimpleDateFormat(ConstantUtil.DATE_FORMAT);
         resource.setTime(new Date().toString());
-        resourceService.delete(resource);
+        resourceService.delete(resource,"213");
     }
+
 }

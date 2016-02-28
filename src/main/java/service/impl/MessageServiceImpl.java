@@ -195,5 +195,21 @@ public class MessageServiceImpl implements MessageService {
         messageDAO.add(message);
     }
 
+    /**
+     * 管理员对用户发送消息
+     *
+     * @param msgContent
+     * @param receiverId
+     */
+    @Override
+    public void adminMsg(String msgContent, int receiverId) {
+        Message message = new Message();
+        message.setMsgContent(msgContent);
+        message.setReceiverId(receiverId);
+        message.setMessageType(Message.ADMIN_MSG);
+        message.setTime(dateFormat.format(new Date()));
+        messageDAO.add(message);
+    }
+
 
 }

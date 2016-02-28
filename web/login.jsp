@@ -54,7 +54,8 @@
                 success: function (result) {//返回数据根据结果进行相应的处理
 
                     if (result.loginState == 'fail') {
-                        alert("用户名或密码错误！")
+                        $("#msgContent").html("<span style='color: red'>用户名或密码错误！</span>");
+                        $("#msg").modal();
                     }
                     else if (result.loginState == "success") {
                         window.location.href = "loginSuccess";
@@ -94,7 +95,22 @@
                 <a href="register.jsp">
                     <button type="button" class="am-btn am-btn-secondary am-btn-block">注册</button>
                 </a>
+                <span style="padding: 5px"><button type="button" class="am-btn am-btn-secondary am-btn-block am-btn-xs">忘记密码请联系科协管理员</button></span>
             </form>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="msg">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">消息提示
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <span id="msgContent">
+            </span>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
         </div>
     </div>
 </div>

@@ -46,4 +46,6 @@ public interface DepartmentDAO extends BaseDao<Department> {
      */
     public void delete(Department department);
 
+    public Department retriveBuId(int id);
+
 }

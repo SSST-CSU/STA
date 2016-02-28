@@ -26,4 +26,11 @@ public interface PersonLectureMapping {
      */
     public void deleteMapping(Lecture lecture, Person person);
 
+    /**判断用户是否已经申请参加了讲座
+     * @param lecture
+     * @param person
+     * @return
+     */
+    public boolean isMapping(Lecture lecture, Person person);
+
 }

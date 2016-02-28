@@ -14,6 +14,8 @@ import java.util.Map;
 @Transactional
 public interface ResourceService {
 
+    public Resource retriveById(int id);
+
     /**
      * 添加一个资源的信息
      *
@@ -63,7 +65,7 @@ public interface ResourceService {
      *
      * @param resource
      */
-    public void delete(Resource resource);
+    public void delete(Resource resource,String filePath);
 
     /**查询分页后的总页数
      * @return

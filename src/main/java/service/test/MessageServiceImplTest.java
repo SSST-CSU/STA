@@ -96,4 +96,8 @@ public class MessageServiceImplTest extends TestCase {
     @Test
     public void testRetriveByPage() throws Exception {
     }
+    @Test
+    public void textAdminMsg() throws Exception {
+        messageService.adminMsg("我是科协管理员，给你发来消息我是科协管理员，给你发来消息我是科协管理员，给你发来消息我是科协管理员，给你发来消息我是科协管理员，给你发来消息我是科协管理员，给你发来消息我是科协管理员，给你发来消息我是科协管理员，给你发来消息",50);
+    }
 }

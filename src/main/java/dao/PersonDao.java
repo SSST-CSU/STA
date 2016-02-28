@@ -1,5 +1,6 @@
 package dao;
 
+import domain.Lecture;
 import domain.Person;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +26,9 @@ public interface PersonDao extends BaseDao<Person> {
     public Person retriveByAccount(String account);
 
 
-    /**根据用户名以及密码查找用户信息
+    /**
+     * 根据用户名以及密码查找用户信息
+     *
      * @param account
      * @param password
      * @return
@@ -61,8 +64,56 @@ public interface PersonDao extends BaseDao<Person> {
      */
     public void delete(Person person);
 
-    /**根据会员id查找会员信息
+    /**
+     * 根据会员id查找会员信息
+     *
      * @param id
      */
     public Person retriveById(int id);
+
+
+    public List<Person> retriveByPageNumber(int number);
+
+    /**
+     * 根据关键字分页查询讲座信息
+     *
+     * @param number
+     * @param key
+     * @return
+     */
+    public List<Person> retrivePageAndKey(int number, String key);
+
+
+    /**
+     * 查询数据库中总的记录的个数
+     *
+     * @return
+     */
+    public int retriveCounts();
+
+    /**
+     * 查询分页之后的总的页数
+     *
+     * @return
+     */
+    public int retrivePageNumber();
+
+    /**
+     * 查询根据关键字查询得到结果的总记录的个数
+     *
+     * @param key
+     * @return
+     */
+    public int retriveCountsByKey(String key);
+
+    /**
+     * 根据关键字查询团队信息的总页数
+     *
+     * @param key
+     * @return
+     */
+    public int retrivePageNumberByKey(String key);
+
+    public List<Person> retriveByDepartment(String name);
+
 }

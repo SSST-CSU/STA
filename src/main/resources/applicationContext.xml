@@ -30,6 +30,10 @@
                 <value>domain.Resource</value>
                 <value>domain.Team</value>
                 <value>domain.Message</value>
+                <value>domain.Attach</value>
+                <value>domain.ADMessage</value>
+                <value>domain.ApplyForm</value>
+                <value>domain.Admin</value>
             </list>
         </property>
         <property name="hibernateProperties">

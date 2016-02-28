@@ -152,12 +152,20 @@ public interface MessageService {
      */
     public void removePerson(int personId, String personName, String teanName, int receiverId);
 
-    /**向用户发送消息，有用户被请出队伍
+    /**
+     * 向用户发送消息，有用户被请出队伍
+     *
      * @param personId
      * @param personName
      * @param teamName
      * @param receiverId
      */
     public void putAwayByTeam(int personId, String personName, String teamName, int receiverId);
+
+    /**管理员对用户发送消息
+     * @param msgContent
+     * @param receiverId
+     */
+    public void adminMsg(String msgContent, int receiverId);
 
 }

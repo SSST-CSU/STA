@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class PersonDepartmentMappingHibernate4 extends BaseDaoHibernate4 implements PersonDepartmentMapping {
     @Override
     public void addMapping(Department department, Person person) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
         Department d = (Department) session.get(Department.class, department.getId());
@@ -28,7 +28,7 @@ public class PersonDepartmentMappingHibernate4 extends BaseDaoHibernate4 impleme
 
     @Override
     public void deleteMapping(Department department, Person person) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
         Department d = (Department) session.get(Department.class, department.getId());

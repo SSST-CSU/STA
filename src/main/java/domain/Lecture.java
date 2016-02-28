@@ -13,7 +13,7 @@ public class Lecture {
     private int id;
     private String name;
     private String introduce;
-    private String link;
+    private String accessable;
     private String time;
 
     private Set<Person> personList;
@@ -21,10 +21,10 @@ public class Lecture {
     public Lecture() {
     }
 
-    public Lecture(String name, String introduce, String link, String time) {
+    public Lecture(String name, String introduce, String accessable, String time) {
         this.name = name;
         this.introduce = introduce;
-        this.link = link;
+        this.accessable = accessable;
         this.time = time;
     }
 
@@ -32,7 +32,7 @@ public class Lecture {
     public String toString() {
         return "Lecture{" +
                 "time='" + time + '\'' +
-                ", link='" + link + '\'' +
+                ", accessable='" + accessable + '\'' +
                 ", introduce='" + introduce + '\'' +
                 ", name='" + name + '\'' +
                 ", id=" + id +
@@ -69,14 +69,15 @@ public class Lecture {
         this.introduce = introduce;
     }
 
-    @Column(name = "link")
-    public String getLink() {
-        return link;
+    @Column(name = "accessable")
+    public String getAccessable() {
+        return accessable;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setAccessable(String accessable) {
+        this.accessable = accessable;
     }
+
 
     @Column(name = "time")
     public String getTime() {

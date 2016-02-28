@@ -45,4 +45,9 @@ public class DepartmentDaoHibernate4 extends BaseDaoHibernate4<Department> imple
     public void delete(Department department) {
         super.delete(department);
     }
+
+    @Override
+    public Department retriveBuId(int id) {
+        return super.get(Department.class, id);
+    }
 }

@@ -29,21 +29,21 @@
             <li><a href="index.jsp">首页</a></li>
             <li><a href="retriveTeamByPage?targetPage=1">来组团</a></li>
             <li><a href="retriveResourceByPage?targetPage=1">下资源</a></li>
-            <li><a href="lectureList.jsp">听讲座</a></li>
-            <li><a href="competitionList.jsp">找比赛</a></li>
+            <li><a href="retriveLectureByPage?targetPage=1">听讲座</a></li>
+            <li><a href="viewCompetition?targetPage=1">找比赛</a></li>
             <li class="am-dropdown" data-am-dropdown>
                 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                     找我们 <span class="am-icon-caret-down"></span>
                 </a>
                 <ul class="am-dropdown-content">
-                    <li><a href="#">1. 主席团</a></li>
-                    <li><a href="zong.jsp">2. 综合事务部</a></li>
-                    <li><a href="#">3. 技术交流与推广部</a></li>
-                    <li><a href="#">4. 赛事部</a></li>
-                    <li><a href="#">5. 项目部</a></li>
-                    <li><a href="#">6. 公共关系部</a></li>
-                    <li><a href="#">7. 创新创业项目管理中心</a></li>
-                    <li><a href="department.jsp">8. 研发中心</a></li>
+                    <li><a onclick="changeDepartment('主席团')">1. 主席团</a></li>
+                    <li><a onclick="changeDepartment('综合事务部')">2. 综合事务部</a></li>
+                    <li><a onclick="changeDepartment('技术交流与推广部')">3. 技术交流与推广部</a></li>
+                    <li><a onclick="changeDepartment('赛事部')">4. 赛事部</a></li>
+                    <li><a onclick="changeDepartment('项目部')">5. 项目部</a></li>
+                    <li><a onclick="changeDepartment('公共关系部')">6. 公共关系部</a></li>
+                    <li><a onclick="changeDepartment('创新创业项目管理中心')">7. 创新创业项目管理中心</a></li>
+                    <li><a onclick="changeDepartment('研发中心')">8. 研发中心</a></li>
                 </ul>
             </li>
         </ul>
@@ -87,16 +87,10 @@
 </div>
 <script type="text/javascript">
 
-    /*$("#logout").click(function(){
-     $.ajax({
-     url:"/testLogout",
-     type:"post",
-     success:function(data){
-     alert('注销成功');
-     window.location.href="index.jsp";
-     }
-     })
-     })*/
+    function changeDepartment(name){
+        var url = "retriveDepartment?targetDepartment="+name;
+        window.location.href = url;
+    }
 
 </script>
 

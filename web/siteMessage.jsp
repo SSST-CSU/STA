@@ -188,6 +188,14 @@
                             <div class="col-md-2">${message.time}</div>
                         </div>
                     </c:when>
+                    <c:when test="${message.messageType == 14}">
+                        <div class="row border-line">
+                            <div class="col-md-1">${status.index+1}</div>
+                            <div class="col-md-9">科协发来消息：${message.msgContent}
+                            </div>
+                            <div class="col-md-2">${message.time}</div>
+                        </div>
+                    </c:when>
                 </c:choose>
             </c:forEach>
         </div>

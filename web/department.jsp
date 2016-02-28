@@ -22,7 +22,7 @@
     <style type="text/css" rel="stylesheet">
         /* portfolio section */
         #portfolio {
-            background:#000000;
+            background: #000000;
             text-align: center;
             padding-top: 80px;
             padding-bottom: 60px;
@@ -30,89 +30,105 @@
             color: #FFFFFF;
             font-size: 2.7em;
         }
+
         #portfolio h2 {
             padding-bottom: 20px;
         }
+
         #portfolio .col-md-4,
         #portfolio .col-md-3 {
             padding: 0;
             margin: 0;
         }
+
         #portfolio img {
             width: 100%;
             transition: all 0.4s ease-in;
             opacity: 0.8;
         }
+
         #portfolio img:hover {
             opacity: 1;
         }
+
         #portfolio .btn {
             margin-top: 30px;
         }
 
-        .service{
-            background:#fff;
-            padding:7em 0;
+        .service {
+            background: #fff;
+            padding: 7em 0;
             font-family: title;
         }
-        .service-head{
-            text-align:center;
+
+        .service-head {
+            text-align: center;
         }
-        .service-head  h3{
-            color:#000;
-            font-size:2.7em;
-            margin-bottom:14px;
-            letter-spacing:1.3px;
-            font-weight:600;
+
+        .service-head h3 {
+            color: #000;
+            font-size: 2.7em;
+            margin-bottom: 14px;
+            letter-spacing: 1.3px;
+            font-weight: 600;
         }
-        .service-head  h4{
-            color:#000;
-            font-size:1.2em;
-            word-spacing:2px;
-            letter-spacing:1.2px;
-            font-weight:600;
+
+        .service-head h4 {
+            color: #000;
+            font-size: 1.2em;
+            word-spacing: 2px;
+            letter-spacing: 1.2px;
+            font-weight: 600;
         }
-        .service-grids{
-            margin-top:6%;
+
+        .service-grids {
+            margin-top: 6%;
         }
-        .service-grid{
-            text-align:center;
-            padding:0;
+
+        .service-grid {
+            text-align: center;
+            padding: 0;
         }
-        .service-grid h3{
-            color:#000;
-            margin-top:1.5em;
-            font-weight:600;
-            font-size:2.1em;
+
+        .service-grid h3 {
+            color: #000;
+            margin-top: 1.5em;
+            font-weight: 600;
+            font-size: 2.1em;
         }
-        .service-grid h4{
-            color:#000;
-            font-size:1.2em;
-            margin-top:1em;
-            word-spacing:1.5px;
+
+        .service-grid h4 {
+            color: #000;
+            font-size: 1.2em;
+            margin-top: 1em;
+            word-spacing: 1.5px;
         }
+
         /*--teamwork--*/
-        .teamwork{
-            background:#000;
-            padding:5em 0;
+        .teamwork {
+            background: #000;
+            padding: 5em 0;
             font-family: title;
         }
-        .team-head h3{
-            color:#fff;
-            font-size:2.7em;
-            letter-spacing:1.3px;
-            font-weight:600;
-            text-align:center;
-            margin-bottom:10px;
+
+        .team-head h3 {
+            color: #fff;
+            font-size: 2.7em;
+            letter-spacing: 1.3px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 10px;
         }
-        .team-head h4{
+
+        .team-head h4 {
             color: #fff;
             font-size: 1.1em;
             word-spacing: 2px;
             letter-spacing: 1.2px;
             font-weight: 400;
-            text-align:center;
+            text-align: center;
         }
+
         /* --#flexiselDemo3 {
             display: none;
         }-- */
@@ -120,19 +136,23 @@
             position: relative;
             max-width: 100%;
         }
+
         .nbs-flexisel-inner {
             overflow: hidden;
-            margin:3em 0;
+            margin: 3em 0;
         }
+
         .nbs-flexisel-item > img {
             cursor: pointer;
             position: relative;
         }
+
         .nbs-flexisel-container {
             position: relative;
             max-width: 100%;
-            margin-top:6%;
+            margin-top: 6%;
         }
+
         .nbs-flexisel-ul {
             position: relative;
             width: 9999px;
@@ -141,100 +161,111 @@
             list-style-type: none;
             text-align: center;
         }
+
         .nbs-flexisel-inner {
             overflow: hidden;
             margin: 0 auto;
-            width:100%;
+            width: 100%;
         }
+
         .nbs-flexisel-item {
             float: left;
-            margin:0px;
-            padding:0px;
+            margin: 0px;
+            padding: 0px;
             cursor: pointer;
             position: relative;
             display: inline-block;
         }
-        .course_demo{
+
+        .course_demo {
             padding: 3% 3% 3% 3%;
         }
+
         .nbs-flexisel-item img {
             width: 12vw;
             height: 12vw;
             cursor: pointer;
             position: relative;
             margin-bottom: 0px;
-            display:inline;
+            display: inline;
             border-radius: 7px;
             -webkit-border-radius: 7px;
             -moz-border-radius: 7px;
             -o-border-radius: 7px;
         }
+
         /*** Navigation ***/
         .nbs-flexisel-nav-left,
         .nbs-flexisel-nav-right {
-            width:44px;
-            height:60px;
+            width: 44px;
+            height: 60px;
             position: absolute;
             cursor: pointer;
             z-index: 100;
         }
+
         .nbs-flexisel-nav-left {
             left: -7em;
-            background: url(/img/department/left.png) 0px 0px no-repeat;
+            background: url(img/department/left.png) 0px 0px no-repeat;
         }
+
         .nbs-flexisel-nav-right {
             right: -7em;
-            background: url(/img/department/right.png) 0px 0px no-repeat;
+            background: url(img/department/right.png) 0px 0px no-repeat;
         }
-        .client h3{
+
+        .client h3 {
             color: #fff;
             font-weight: 600;
             font-size: 2.1em;
             margin-top: 1em;
         }
+
         .client h4 {
             color: #fff;
             font-size: 1.3em;
             margin-top: 0.5em;
             word-spacing: 1.5px;
-            font-weight:400;
+            font-weight: 400;
         }
+
         .detail .carousel-indicators .active {
             background: #0bf397;
         }
 
-        .detail{
+        .detail {
             overflow: hidden;
             padding: 50px 0px 0px 0px;
             min-height: 500px;
         }
 
-        .detail .title{
+        .detail .title {
             margin-bottom: 80px;
             text-align: center;
         }
 
-        .detail .features .row{
+        .detail .features .row {
             margin-bottom: 40px;
         }
 
-        .detail .carousel h1{
+        .detail .carousel h1 {
             font-size: 3.8em;
         }
-        .detail .carousel h1, .detail p{
+
+        .detail .carousel h1, .detail p {
             text-align: left;
             font-weight: 300;
         }
 
-        .detail p{
+        .detail p {
             color: #aaa;
         }
 
-        .detail .carousel-control{
+        .detail .carousel-control {
             background: none;
         }
 
-        .detail .app-screenshot{
+        .detail .app-screenshot {
             overflow: hidden;
             margin-right: auto;
             margin-left: auto;
@@ -244,7 +275,7 @@
             background-size: 100%;
         }
 
-        .detail .app-screenshot img{
+        .detail .app-screenshot img {
             margin-right: auto;
             margin-left: auto;
             padding-left: 4px;
@@ -283,24 +314,25 @@
             text-indent: -999px;
             cursor: pointer;
         }
+
         @font-face {
             font-family: title;
             src: url("font/title.TTF");
         }
 
-        .title{
+        .title {
             font-family: title;
             color: white;
         }
 
-        .midContent{
+        .midContent {
             position: absolute;
             top: 35vh;
             text-align: center;
             width: 100%
         }
 
-        .bgImg{
+        .bgImg {
             height: 100%;
             width: 100%;
             z-index: -1;
@@ -311,66 +343,55 @@
 
 <body>
 
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 
 
 <div style="height: auto;width: 100%">
     <img src="img/department/background.jpg" class="bgImg" id="bg"/>
+
     <div class="midContent">
-        <h1 class="title" style="font-size: 50px;margin-top: 0px;margin-bottom: 0px;color: #030303" data-am-scrollspy="{animation:'scale-down'}">研发中心</h1>
-        <p style="margin-top: 5vh;margin-bottom: 5vh"><b class="title" style="font-size: 20px;color: #085c9f" data-am-scrollspy="{animation:'scale-down',delay: 300}">研发中心啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</b></p>
-        <a class="button button-border" style="margin-right: 5%;color: black" data-am-scrollspy="{animation:'scale-down',delay: 600}">联系我们</a>
-        <a class="button button-border" style="color: black" data-am-scrollspy="{animation:'scale-down',delay: 900}">加入我们</a>
+        <h1 class="title" style="font-size: 50px;margin-top: 0px;margin-bottom: 0px;color: #030303"
+            data-am-scrollspy="{animation:'scale-down'}">${sessionScope.department.name}</h1>
+
+        <div><p style="margin-top: 5vh;margin-bottom: 5vh"><b class="title" style="font-size: 20px;color: #085c9f"
+                                                              data-am-scrollspy="{animation:'scale-down',delay: 300}">${sessionScope.department.introduce}</b>
+        </p></div>
+        <div><p style="margin-top: 5vh;margin-bottom: 5vh"><b class="title" style="font-size: 20px;color: #085c9f"
+                                                              data-am-scrollspy="{animation:'scale-down',delay: 300}">${sessionScope.department.destination}</b>
+        </p></div>
     </div>
     <div id="teamwork" class="teamwork">
         <div class="container">
             <div class="team-head">
                 <h3>部门成员</h3>
-                <h4>研发中心</h4>
+                <h4>${sessionScope.department.name}</h4>
             </div>
             <div class="clients">
                 <div class="course_demo1">
                     <ul id="flexiselDemo1">
+                        <c:choose>
+                        <c:when test="${empty sessionScope.members}">
+                        <tr>
+                            <th colspan="6">还没有部员加入！</th>
+                        </tr>
+                        </c:when>
+                        <c:when test="${!empty sessionScope.members}">
+                        <c:forEach var="member" items="${sessionScope.members}" varStatus="status">
                         <li>
                             <div class="client">
-                                <img src="img/department/per1.png"/>
-                                <h3>部长</h3>
-                                <h4>张然</h4>
+                                <img src="${sessionScope.path}${member.protrait}" style="width: 10vw; height: 10vw"/>
+
+                                <h3>${member.job}</h3>
+                                <h4>${member.name}</h4>
                             </div>
                         </li>
-                        <li>
-                            <div class="client">
-                                <img src="img/department/per2.png"/>
-                                <h3>首席技术官</h3>
-                                <h4>韦胜健</h4>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="client">
-                                <img src="img/department/background.jpg"/>
-                                <h3>部员</h3>
-                                <h4>周开元</h4>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="client">
-                                <img src="img/department/portfolio-img1.jpg"/>
-                                <h3>部员</h3>
-                                <h4>刘心仪</h4>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="client">
-                                <img src="img/department/portfolio-img2.jpg"/>
-                                <h3>部员</h3>
-                                <h4>范俞佑</h4>
-                            </div>
-                        </li>
-                    </ul>
+                        </c:forEach>
+                        </c:when>
+                        </c:choose>
                 </div>
-                <link rel="stylesheet" href="/css/department/flexslider.css" type="text/css" media="screen" />
+                <link rel="stylesheet" href="css/department/flexslider.css" type="text/css" media="screen"/>
                 <script type="text/javascript">
-                    $(window).load(function() {
+                    $(window).load(function () {
                         $("#flexiselDemo1").flexisel({
                             visibleItems: 4,
                             animationSpeed: 1000,
@@ -380,15 +401,15 @@
                             enableResponsiveBreakpoints: true,
                             responsiveBreakpoints: {
                                 portrait: {
-                                    changePoint:480,
+                                    changePoint: 480,
                                     visibleItems: 1
                                 },
                                 landscape: {
-                                    changePoint:640,
+                                    changePoint: 640,
                                     visibleItems: 2
                                 },
                                 tablet: {
-                                    changePoint:768,
+                                    changePoint: 768,
                                     visibleItems: 3
                                 }
                             }
@@ -396,17 +417,17 @@
 
                     });
                 </script>
-                <script type="text/javascript" src="/js/department/jquery.flexisel.js"></script>
+                <script type="text/javascript" src="js/department/jquery.flexisel.js"></script>
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
-        $("#joinUs").on("mouseenter",function(){
-            $("#joinUs").css("color","#00a8e6")
+        $("#joinUs").on("mouseenter", function () {
+            $("#joinUs").css("color", "#00a8e6")
         })
-        $("#joinUs").on("mouseleave",function(){
-            $("#joinUs").css("color","white")
+        $("#joinUs").on("mouseleave", function () {
+            $("#joinUs").css("color", "white")
         })
     </script>
 
@@ -418,21 +439,23 @@
                 <h4>WHAT WE DO?</h4>
             </div>
             <div class="service-grids">
-                <div class="col-md-4 service-grid">
-                    <img src="img/department/pic1.png"/>
-                    <h3>开发</h3>
-                    <h4>开发院内项目</h4>
-                </div>
-                <div class="col-md-4 service-grid">
-                    <img src="img/department/pic2.png"/>
-                    <h3>团队管理</h3>
-                    <h4>管理挂靠科协的技术团队</h4>
-                </div>
-                <div class="col-md-4 service-grid">
-                    <img src="img/department/pic3.png"/>
-                    <h3>培训</h3>
-                    <h4>为院内注入新生力量</h4>
-                </div>
+
+                <c:choose>
+                    <c:when test="${empty sessionScope.attaches}">
+                        <tr>
+                            <th colspan="6">还没有添加部门职责！</th>
+                        </tr>
+                    </c:when>
+                    <c:when test="${!empty sessionScope.attaches}">
+                        <c:forEach var="attach" items="${sessionScope.attaches}" varStatus="status">
+                            <c:if test="${attach.type == 'responsibility'}">
+                                <div class="col-md-4 service-grid">
+                                    <h4>${attach.content}</h4>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </c:when>
+                </c:choose>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -443,10 +466,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-offset-2 col-md-8 col-sm-12">
-                    <h2>成果展示</h2>
+                    <h2>成果</h2>
                 </div>
             </div>
+            <div class="service-grids">
 
+                <c:choose>
+                    <c:when test="${empty sessionScope.attaches}">
+                        <tr>
+                            <th colspan="6">还没有添加部门职责！</th>
+                        </tr>
+                    </c:when>
+                    <c:when test="${!empty sessionScope.attaches}">
+                        <c:forEach var="attach" items="${sessionScope.attaches}" varStatus="status">
+                            <c:if test="${attach.type == 'responsibility'}">
+                                <div class="col-md-12 service-grid">
+                                    <p style="color: #fff;font-size: 2.1rem">${attach.content}</p>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </c:when>
+                </c:choose>
+                <div class="clearfix"></div>
+            </div>
             <div class="row mt30">
 
                 <div class="col-md-4 col-sm-4 col-xs-6">
@@ -478,7 +520,9 @@
         </div>
     </div>
 </div>
+<script>
 
+</script>
 </body>
 
 </html>

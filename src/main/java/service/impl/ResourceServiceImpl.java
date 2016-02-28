@@ -5,6 +5,7 @@ import domain.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.ResourceService;
+import util.upload.FileUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,11 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Autowired
     ResourceDAO resourceDao;
+
+    @Override
+    public Resource retriveById(int id) {
+        return resourceDao.retriveById(id);
+    }
 
     @Override
     public void add(Resource resource) {
@@ -52,7 +58,8 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public void delete(Resource resource) {
+    public void delete(Resource resource, String filePath) {
+        FileUtil.deleteFile(filePath);
         resourceDao.delete(resource);
     }
 

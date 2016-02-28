@@ -168,10 +168,22 @@
         <div class="col-sm-4 text-center">
             <div class="input-group" style="padding:3vh">
                 <span class="input-group-addon" style="border-radius: 0">一共${sessionScope.pageNumber}页</span>
-                <input type="text" class="form-control" placeholder="在这里输入要跳转页的号码：" aria-describedby="basic-addon2"
+                <input id="page" type="text" class="form-control" placeholder="在这里输入要跳转页的号码：" aria-describedby="basic-addon2"
                        value="${sessionScope.targetPage}">
                 <span class="input-group-addon btn" id="selectPageBtn" style="border-radius: 0">Go!</span>
             </div>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="joinMsg">
+    <div class="am-modal-dialog">
+        <center>
+            <h3>消息提示</h3>
+            <h6 id="msgContent">
+            </h6>
+        </center>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm id="confirmBtn">确定</span>
         </div>
     </div>
 </div>
@@ -229,6 +241,23 @@
             window.location.href = "retriveResourceByPage?targetPage=${sessionScope.targetPage+1}&key=${sessionScope.key}";
         }
     }
+
+    $("#selectPageBtn").click(function () {
+        var targetPage = $("#page").val().trim();
+        var pageNumber = ${sessionScope.pageNumber};
+        if (targetPage <= pageNumber && targetPage > 0) {
+            var url = "retriveResourceByPage?targetPage=" + targetPage;
+            if (${sessionScope.key!=null}) {
+                url += "&key=${sessionScope.key}";
+            }
+            window.location.href = url;
+        }
+        else {
+            $("#msgContent").html("输入不合法！");
+            $("#joinMsg").modal({});
+        }
+    });
+
 </script>
 </body>
 </html>

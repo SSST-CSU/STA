@@ -94,8 +94,8 @@
     <div class="midContent">
       <h1 class="title" style="font-size: 50px;margin-top: 0px;margin-bottom: 0px" data-am-scrollspy="{animation:'scale-down'}">中南大学软件学院<br>科学技术协会</h1>
       <p><b class="title" style="font-size: 20px;color: #efefef" data-am-scrollspy="{animation:'scale-down',delay: 300}">为了正在进步的你</b></p>
-      <a class="button button-primary button-pill" style="margin-right: 5%;font-family: title;" data-am-scrollspy="{animation:'scale-down',delay: 600}">了解我们</a>
-      <a class="button button-pill button-border" style="font-family: title;color: white" id="joinUs" data-am-scrollspy="{animation:'scale-down',delay: 900}">加入我们</a>
+      <a href="retriveDepartment?targetDepartment=主席团" class="button button-primary button-pill" style="margin-right: 5%;font-family: title;" data-am-scrollspy="{animation:'scale-down',delay: 600}">了解我们</a>
+      <a class="button button-pill button-border" style="font-family: title;color: white" id="joinUs" data-am-scrollspy="{animation:'scale-down',delay: 900}" onclick="joinUs()">加入我们</a>
     </div>
 
     <div style="width: 100%;height: 100vh;background: black">
@@ -136,7 +136,7 @@
         <div style="margin-top: 13vh;background: #07a62c" class="competitionDiv" data-am-scrollspy="{animation:'slide-left',delay: 400}">软件创新大赛</div>
         <div style="margin-left: 5%;margin-top:5vh;background: #ffa631" class="competitionDiv" data-am-scrollspy="{animation:'slide-right',delay: 500}">服务外包比赛</div>
         <div style="margin-left: 10%;margin-top:5vh;background: #dd0bff" class="competitionDiv" data-am-scrollspy="{animation:'slide-left',delay: 600}">花旗杯金融大赛</div>
-        <div style="margin-left: 15%;margin-top:5vh;background: #000000" class="competitionDiv" data-am-scrollspy="{animation:'slide-right',delay: 700}">更多...</div>
+        <div style="margin-left: 15%;margin-top:5vh;background: #000000" class="competitionDiv" data-am-scrollspy="{animation:'slide-right',delay: 700}" onclick="viewCompetition()">更多...</div>
       </div>
     </div>
 
@@ -156,8 +156,31 @@
   <%@include file="footer.jsp"%>
 
   </body>
-
+  <div class="am-modal am-modal-no-btn" tabindex="-1" id="msg">
+    <div class="am-modal-dialog">
+      <div class="am-modal-hd">消息提示
+        <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+      </div>
+      <div class="am-modal-bd">
+            <span id="msgContent">
+            </span>
+      </div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn">确定</span>
+      </div>
+    </div>
+  </div>
 <script type="text/javascript">
+
+  function joinUs(){
+    if(${sessionScope.person==null}){
+      $("#msgContent").html("<span style='color: green'>请先登录！</span>");
+      $("#msg").modal();
+    }
+    else{
+      window.location.href = "/sta/applyForm.jsp";
+    }
+  }
 
   $("#joinUs").on("mouseenter",function(){
     $("#joinUs").css("color","#00a8e6")
@@ -165,6 +188,10 @@
   $("#joinUs").on("mouseleave",function(){
     $("#joinUs").css("color","white")
   })
+
+  function viewCompetition(){
+    window.location.href = "viewCompetition?targetPage=1";
+  }
 
 </script>
 
