@@ -72,15 +72,18 @@
     $("#savePasswordBtn").click(function(){
         checkPreviousPasswordRight();
         if(!isOldPasswordRight){
-            alert("旧密码不正确！");
+            $("#msgContent").html("旧密码不正确！");
+            $("#joinMsg").modal({});
             return;
         }
         if(!checkPasswordIsLeagal()){
-            alert("新密码不正确！必须6位以上");
+            $("#msgContent").html("新密码不正确！必须6位以上！");
+            $("#joinMsg").modal({});
             return;
         }
         if(!checkPassword2IsCorrect()){
-            alert("确认密码不正确！");
+            $("#msgContent").html("确认密码不正确！");
+            $("#joinMsg").modal({});
             return;
         }
 
@@ -95,7 +98,8 @@
             success: function (result) {//返回数据根据结果进行相应的处理
 
                 if (result.saveStatus == "success") {
-                    alert("保存成功！");
+                    $("#msgContent").html("保存成功！");
+                    $("#joinMsg").modal({});
                     $("#oldPassword").val("");
                     $("#newPassword1").val("");
                     $("#newPassword2").val("");

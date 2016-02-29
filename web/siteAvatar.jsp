@@ -74,9 +74,10 @@
       },
       success: function(data, status){
         if(data.saveStatus == "success"){
-          alert("保存成功！");
+          $("#msgContent").html("保存成功！");
+          $("#joinMsg").modal({});
         }
-        else("保存失败！");
+        else alert("保存失败！");
       },
       error: function(data, status, e){
         alert(e);

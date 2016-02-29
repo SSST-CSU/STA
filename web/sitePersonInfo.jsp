@@ -135,19 +135,23 @@
     /*保存更改信息*/
     $("#saveChangeBtn").click(function () {
         if (!checkClassesIsCorrect()) {
-            alert("班级信息填写不正确，请检查！");
+            $("#msgContent").html("班级信息填写不正确，请检查！");
+            $("#joinMsg").modal({});
             return;
         }
         if (!checkQqIsCorrect()) {
-            alert("qq信息填写不正确，请检查！");
+            $("#msgContent").html("qq信息填写不正确，请检查！");
+            $("#joinMsg").modal({});
             return;
         }
         if (!checkTelIsLegal()) {
-            alert("电话号码填写不正确，请检查！");
+            $("#msgContent").html("电话号码填写不正确，请检查！");
+            $("#joinMsg").modal({});
             return;
         }
         if (!checkMailIsLegal()) {
-            alert("邮件信息填写不正确，请检查！");
+            $("#msgContent").html("邮件信息填写不正确，请检查！");
+            $("#joinMsg").modal({});
             return;
         }
 
@@ -170,7 +174,8 @@
             success: function (result) {//返回数据根据结果进行相应的处理
 
                 if (result.saveStatus == "success") {
-                    alert("保存成功！");
+                    $("#msgContent").html("保存成功！");
+                    $("#joinMsg").modal({});
                 }
                 else {
                     alert("保存失败！");
