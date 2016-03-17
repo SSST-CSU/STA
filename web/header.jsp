@@ -56,7 +56,10 @@
                     <s:if test="%{#session.person==null}">
                         <li><a href="register.jsp">注册</a></li>
                     </s:if>
-                    <li><a href="#">随便看看</a></li>
+                    <s:else>
+                        <li><a href="groupRelease.jsp">发起组队</a></li>
+                        <li><a href="siteMessage.jsp">我的消息</a></li>
+                    </s:else>
                 </ul>
             </div>
         </div>
@@ -71,8 +74,8 @@
         <s:else>
             <div class="am-topbar-right">
                 <a href="personInfo.jsp">
-                    <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="info">欢迎,<s:property
-                            value="#session.person.name"/></button>
+                    <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="info"><s:property
+                            value="#session.person.name"/>的个人中心</button>
                 </a>
             </div>
             <div class="am-topbar-right">
