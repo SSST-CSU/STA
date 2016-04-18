@@ -13,13 +13,14 @@ public class Resource {
     private String introduce;
     private String downloadUrl;
     private String time;
-    private double size;
+    private Float size;
     private int downloadTimes;
+    private String unit;//单位
 
     public Resource() {
     }
 
-    public Resource(String name, String introduce, String downloadUrl, String time, double size, int downloadTimes) {
+    public Resource(String name, String introduce, String downloadUrl, String time, Float size, int downloadTimes) {
         this.name = name;
         this.introduce = introduce;
         this.downloadUrl = downloadUrl;
@@ -89,11 +90,11 @@ public class Resource {
     }
 
     @Column(name = "size")
-    public double getSize() {
+    public Float getSize() {
         return size;
     }
 
-    public void setSize(double size) {
+    public void setSize(Float size) {
         this.size = size;
     }
 
@@ -104,5 +105,13 @@ public class Resource {
 
     public void setDownloadTimes(int downloadTimes) {
         this.downloadTimes = downloadTimes;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

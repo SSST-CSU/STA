@@ -51,7 +51,7 @@ public class ResourceServiceImplTest extends TestCase {
         }*/
         Resource resource = new Resource();
         resource.setName("hello");
-        resource.setSize(1000);
+        resource.setSize((float) 1000.0);
         resource.setDownloadTimes(0);
         resource.setIntroduce("一个比较老旧的用于开发window应用程序的开发环境");
         resource.setTime(dateFormat.format(new Date()));
@@ -97,5 +97,7 @@ public class ResourceServiceImplTest extends TestCase {
         resource.setTime(new Date().toString());
         resourceService.delete(resource,"213");
     }
+
+
 
 }

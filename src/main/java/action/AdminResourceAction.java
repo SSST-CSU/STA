@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -111,8 +112,8 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
         System.out.println(resource.toString());
 
         String contextPath = ServletActionContext.getServletContext().getRealPath("/");
-        System.out.println(contextPath+resource.getDownloadUrl());
-        resourceService.delete(resource,contextPath+resource.getDownloadUrl());
+        System.out.println(contextPath + resource.getDownloadUrl());
+        resourceService.delete(resource, contextPath + resource.getDownloadUrl());
 
         response.setCharacterEncoding("utf-8");
         response.setContentType("html/text;charset=utf-8");
@@ -125,17 +126,17 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
 
 
     @Action(value = "uploadResourceFile")
-    public void uploadResourceFile()throws Exception {
+    public void uploadResourceFile() throws Exception {
 
         System.out.println("uploadResourceFile");
         String name = request.getParameter("name");
         String introduce = request.getParameter("introduce");
-        System.out.println("name="+name);
-        System.out.println("introduce="+introduce);
-        System.out.println("file is null"+(resource == null));
+        System.out.println("name=" + name);
+        System.out.println("introduce=" + introduce);
+        System.out.println("file is null" + (resource == null));
 
-        System.out.println("fileName"+resourceFileName);
-        System.out.println("fileContentType"+resourceContentType);
+        System.out.println("fileName" + resourceFileName);
+        System.out.println("fileContentType" + resourceContentType);
 
         JSONObject jsonObject = new JSONObject();
         response.setContentType("text/html;charset=utf-8");
@@ -148,7 +149,11 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
             newNesource.setIntroduce(introduce);
             newNesource.setTime(dateFormat.format(new Date()));
             newNesource.setDownloadTimes(0);
-            newNesource.setSize(resource.length());
+
+            Map<String, Object> map = getResourceUnit(resource.length());
+
+            newNesource.setSize((Float) map.get("size"));
+            newNesource.setUnit((String) map.get("unit"));
 //            resource.setDownloadUrl("resource/"+resourceFileName+resource.getTime());
             resourceContentType = resourceFileName.substring(resourceFileName.lastIndexOf(".") + 1);//获得正真的文件类型
             System.out.println("fileContentType:" + resourceContentType);
@@ -180,12 +185,11 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
     }
 
 
-
     /**
      * 获取文件上传的进度
      */
     @Action(value = "getFileUploadProgress")
-    public void getFileUploadProgress() throws Exception{
+    public void getFileUploadProgress() throws Exception {
         UploadStatus status = (UploadStatus) session.get("uploadStatus");
 
         if (status == null) {
@@ -210,8 +214,8 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
         //总长度 单位:m
         double totalLength = ((double) status.getContentLength()) / 1024 / 1024;
 
-        System.out.println("bytesRead:"+status.getBytesRead());
-        System.out.println("ContentLength:"+status.getContentLength());
+        System.out.println("bytesRead:" + status.getBytesRead());
+        System.out.println("ContentLength:" + status.getContentLength());
 
 //        System.out.println("percent:"+percent);
 //        System.out.println("length:"+length);
@@ -239,6 +243,30 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
         response.getWriter().write(jsonObject.toString());
     }
 
+    /**
+     * 根据资源大小获取资源描述的单位
+     *
+     * @param size 资源大小，单位为byte
+     * @return 资源大小单位：kb、mb、gb
+     */
+    public Map<String, Object> getResourceUnit(float size) {
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        if ((size = size / 1024) < 1) {
+            map.put("unit", "byte");
+        } else if ((size = size / 1024) < 1) {
+            map.put("unit", "kb");
+        } else if ((size = size / 1024) < 1) {
+            map.put("unit", "mb");
+        } else if ((size = size / 1024) < 1) {
+            map.put("unit", "gb");
+        }
+        size = size * 1024;
+        map.put("size", size);
+        System.out.println(size+(String)(map.get("unit")));
+        return map;
+    }
 
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {

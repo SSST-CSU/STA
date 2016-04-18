@@ -124,7 +124,7 @@
                             <tr class="color-5279-${status.index+1}">
                                 <th scope="row">${status.index+1}</th>
                                 <td>${resource.name}</td>
-                                <td>${resource.size}</td>
+                                <td>${resource.size}${resource.unit}</td>
                                 <td>${resource.downloadTimes}</td>
                                 <td>
                                     <span
