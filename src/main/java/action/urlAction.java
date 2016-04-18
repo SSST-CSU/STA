@@ -4,7 +4,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sun.deploy.net.HttpResponse;
 import org.apache.struts2.convention.annotation.*;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.springframework.http.HttpRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -12,18 +15,20 @@ import java.util.Map;
  */
 @Namespace("")
 @ParentPackage("struts-default")
-public class urlAction extends ActionSupport {
+public class urlAction extends ActionSupport implements ServletRequestAware {
+
+    HttpServletRequest request;
 
     @Action(value = "testLogin",results = {
             @Result(name = ActionSupport.SUCCESS,location = "/index.jsp")})
     public String testLogin() throws Exception {
         ActionContext actionContext = ActionContext.getContext();
         Map<String, Object> session = actionContext.getSession();
-        session.put("username","zaranengap");
-        session.put("class","1304");
-        session.put("qq","597699567");
-        session.put("tel","15773181012");
-        session.put("introduce","啦啦啦，这里是个人简介有可能会很长所以我就多写点哈哈哈反正测试也没人看见");
+        request.setAttribute("username", "zaranengap");
+        request.setAttribute("class", "1304");
+        request.setAttribute("qq", "597699567");
+        request.setAttribute("tel","15773181012");
+        request.setAttribute("introduce", "啦啦啦，这里是个人简介有可能会很长所以我就多写点哈哈哈反正测试也没人看见");
         return ActionSupport.SUCCESS;
     }
 
@@ -32,5 +37,10 @@ public class urlAction extends ActionSupport {
         ActionContext actionContext = ActionContext.getContext();
         Map<String, Object> session = actionContext.getSession();
         session.clear();
+    }
+
+    @Override
+    public void setServletRequest(HttpServletRequest httpServletRequest) {
+        request = httpServletRequest;
     }
 }

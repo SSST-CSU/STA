@@ -239,7 +239,7 @@
             return;
         }
 
-        alert(name + sex + political + place + classes + studentId + qq + tel + oldJob + swap + first + second + award + achievement + advice + attach + personId);
+//        alert(name + sex + political + place + classes + studentId + qq + tel + oldJob + swap + first + second + award + achievement + advice + attach + personId);
 
         var url = "applyToJoinSTA";
         url += "?applyForm.name=" + name;

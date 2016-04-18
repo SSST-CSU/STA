@@ -41,6 +41,7 @@
 
 
 </div>
+<%--
 <div class="am-modal am-modal-confirm" tabindex="-1" id="joinMsg">
     <div class="am-modal-dialog">
         <center>
@@ -52,4 +53,4 @@
             <span class="am-modal-btn" data-am-modal-confirm id="confirmBtn">确定</span>
         </div>
     </div>
-</div>
+</div>--%>

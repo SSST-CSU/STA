@@ -27,7 +27,7 @@
                 <caption>
                     <center>
                         <div class="input-group" style="width: 50vw;">
-                            <input id="searchKey" type="text" class="form-control" placeholder="用输入要查找的资源名称的关键字" value="${sessionScope.key}"
+                            <input id="searchKey" type="text" class="form-control" placeholder="用输入要查找的资源名称的关键字" value="${requestScope.key}"
                                    aria-describedby="basic-addon">
                             <span class="input-group-addon btn btn-info" id="searchBtn">Go!</span>
                         </div>
@@ -42,13 +42,13 @@
                 </thead>
                 <tbody>
                 <c:choose>
-                    <c:when test="${empty sessionScope.resources}">
+                    <c:when test="${empty requestScope.resources}">
                         <tr>
                             <th colspan="6">很抱歉，没有您想要的数据！</th>
                         </tr>
                     </c:when>
-                    <c:when test="${!empty sessionScope.resources}">
-                        <c:forEach var="resource" items="${sessionScope.resources}" varStatus="status">
+                    <c:when test="${!empty requestScope.resources}">
+                        <c:forEach var="resource" items="${requestScope.resources}" varStatus="status">
                             <tr>
                                 <th scope="row">${status.index+1}</th>
                                 <td>${resource.name}</td>
@@ -75,10 +75,10 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <c:forEach begin="${sessionScope.startAndEnd.start}" end="${sessionScope.startAndEnd.end}"
+                    <c:forEach begin="${requestScope.startAndEnd.start}" end="${requestScope.startAndEnd.end}"
                                varStatus="status">
-                        <li<c:if test="${status.index==sessionScope.targetPage}"> class="active"</c:if>>
-                        <a href="adminResource?targetPage=${status.index}&key=${sessionScope.key}">${status.index}</a>
+                        <li<c:if test="${status.index==requestScope.targetPage}"> class="active"</c:if>>
+                        <a href="adminResource?targetPage=${status.index}&key=${requestScope.key}">${status.index}</a>
                         </li>
                     </c:forEach>
                     <li>
@@ -91,9 +91,9 @@
         </div>
         <div class="col-xs-12 col-sm-3 col-md-3 clean text-center">
             <div class="input-group text-center" style="width: 20vw">
-                <span class="input-group-addon" id="basic-addon1">一共${sessionScope.pageNumber}页</span>
+                <span class="input-group-addon" id="basic-addon1">一共${requestScope.pageNumber}页</span>
                 <input id="page" type="text" class="form-control" placeholder="页码" aria-describedby="basic-addon2"
-                       value="${sessionScope.targetPage}">
+                       value="${requestScope.targetPage}">
                 <span class="input-group-addon btn btn-info" id="selectPageBtn">Go!</span>
             </div>
         </div>
@@ -233,28 +233,28 @@
     });
 
     function previousPage() {
-        if (${sessionScope.targetPage<=1}) {
-            window.location.href = "adminResource?targetPage=1&key=${sessionScope.key}";
+        if (${requestScope.targetPage<=1}) {
+            window.location.href = "adminResource?targetPage=1&key=${requestScope.key}";
         }
         else {
-            window.location.href = "adminResource?targetPage=${sessionScope.targetPage-1}&key=${sessionScope.key}";
+            window.location.href = "adminResource?targetPage=${requestScope.targetPage-1}&key=${requestScope.key}";
         }
     }
     function nextPage() {
-        if (${sessionScope.targetPage>=sessionScope.pageNumber}) {
-            window.location.href = "adminResource?targetPage=${sessionScope.pageNumber}&key=${sessionScope.key}";
+        if (${requestScope.targetPage>=requestScope.pageNumber}) {
+            window.location.href = "adminResource?targetPage=${requestScope.pageNumber}&key=${requestScope.key}";
         }
         else {
-            window.location.href = "adminResource?targetPage=${sessionScope.targetPage+1}&key=${sessionScope.key}";
+            window.location.href = "adminResource?targetPage=${requestScope.targetPage+1}&key=${requestScope.key}";
         }
     }
     $("#selectPageBtn").click(function () {
         var targetPage = $("#page").val().trim();
-        var pageNumber = ${sessionScope.pageNumber};
+        var pageNumber = ${requestScope.pageNumber};
         if (targetPage <= pageNumber && targetPage > 0) {
             var url = "adminResource?targetPage=" + targetPage;
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }

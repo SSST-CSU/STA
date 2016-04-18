@@ -57,11 +57,11 @@ public class CompetitionAction extends ActionSupport implements ServletRequestAw
         }
         Map<String, Integer> startAndEnd = competitionService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-        session.put("competitions", competitions);
-        session.put("pageNumber", pageNumber);
-        session.put("targetPage", targetPage);
-        session.put("startAndEnd", startAndEnd);
-        session.put("key", key);
+        request.setAttribute("competitions", competitions);
+        request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("targetPage", targetPage);
+        request.setAttribute("startAndEnd", startAndEnd);
+        request.setAttribute("key", key);
 
         return SUCCESS;
     }

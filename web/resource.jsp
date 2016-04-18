@@ -92,8 +92,8 @@
             <div class="input-group">
                 <input type="text" id="keyInput" class="form-control" placeholder="请输入查找资源的名称："
                        aria-describedby="basic-addon2"
-                <c:if test="${sessionScope.key != null}">
-                       value="${sessionScope.key}"
+                <c:if test="${requestScope.key != null}">
+                       value="${requestScope.key}"
                 </c:if>
                         >
                 <span class="input-group-addon btn" id="searchBtn">Go!</span>
@@ -116,11 +116,11 @@
                 </thead>
                 <tbody>
                 <c:choose>
-                    <c:when test="${empty sessionScope.resources}">
+                    <c:when test="${empty requestScope.resources}">
                         <span style="font-size: 2em">很抱歉，这里没有你想要的...</span>
                     </c:when>
                     <c:otherwise>
-                        <c:forEach var="resource" items="${sessionScope.resources}" varStatus="status">
+                        <c:forEach var="resource" items="${requestScope.resources}" varStatus="status">
                             <tr class="color-5279-${status.index+1}">
                                 <th scope="row">${status.index+1}</th>
                                 <td>${resource.name}</td>
@@ -151,10 +151,10 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <c:forEach begin="${sessionScope.startAndEnd.start}" end="${sessionScope.startAndEnd.end}"
+                    <c:forEach begin="${requestScope.startAndEnd.start}" end="${requestScope.startAndEnd.end}"
                                varStatus="status">
-                        <li<c:if test="${status.index==sessionScope.targetPage}"> class="active"</c:if>>
-                            <a href="retriveResourceByPage?targetPage=${status.index}&key=${sessionScope.key}">${status.index}</a>
+                        <li<c:if test="${status.index==requestScope.targetPage}"> class="active"</c:if>>
+                            <a href="retriveResourceByPage?targetPage=${status.index}&key=${requestScope.key}">${status.index}</a>
                         </li>
                     </c:forEach>
                     <li>
@@ -167,9 +167,9 @@
         </div>
         <div class="col-sm-4 text-center">
             <div class="input-group" style="padding:3vh">
-                <span class="input-group-addon" style="border-radius: 0">一共${sessionScope.pageNumber}页</span>
+                <span class="input-group-addon" style="border-radius: 0">一共${requestScope.pageNumber}页</span>
                 <input id="page" type="text" class="form-control" placeholder="在这里输入要跳转页的号码：" aria-describedby="basic-addon2"
-                       value="${sessionScope.targetPage}">
+                       value="${requestScope.targetPage}">
                 <span class="input-group-addon btn" id="selectPageBtn" style="border-radius: 0">Go!</span>
             </div>
         </div>
@@ -197,7 +197,7 @@
         window.location.href = url;
     });
     function download(resourceId) {
-        if (${sessionScope.person == null}) {
+        if (${requestScope.person == null}) {
             $("#msgContent").html("没有登录的用户不能下载哦！");
             $("#joinMsg").modal({});
             return;
@@ -227,29 +227,29 @@
 </script>
 <script>
     function previousPage() {
-        if ((<s:property value="#session.targetPage"/>) <= 1) {
-            window.location.href = "retriveResourceByPage?targetPage=1&key=${sessionScope.key}";
+        if (${requestScope.targetPage <= 1}) {
+            window.location.href = "retriveResourceByPage?targetPage=1&key=${requestScope.key}";
         }
         else {
-            window.location.href = "retriveResourceByPage?targetPage=${sessionScope.targetPage-1}&key=${sessionScope.key}";
+            window.location.href = "retriveResourceByPage?targetPage=${requestScope.targetPage-1}&key=${requestScope.key}";
         }
     }
     function nextPage() {
-        if ((<s:property value="#session.targetPage"/>) >=   (<s:property value="#session.pageNumber"/>)) {
-            window.location.href = "retriveResourceByPage?targetPage=${sessionScope.pageNumber}&key=${sessionScope.key}";
+        if (${requestScope.targetPage <= requestScope.pageNumber}) {
+            window.location.href = "retriveResourceByPage?targetPage=${requestScope.pageNumber}&key=${requestScope.key}";
         }
         else {
-            window.location.href = "retriveResourceByPage?targetPage=${sessionScope.targetPage+1}&key=${sessionScope.key}";
+            window.location.href = "retriveResourceByPage?targetPage=${requestScope.targetPage+1}&key=${requestScope.key}";
         }
     }
 
     $("#selectPageBtn").click(function () {
         var targetPage = $("#page").val().trim();
-        var pageNumber = ${sessionScope.pageNumber};
+        var pageNumber = ${requestScope.pageNumber};
         if (targetPage <= pageNumber && targetPage > 0) {
             var url = "retriveResourceByPage?targetPage=" + targetPage;
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }

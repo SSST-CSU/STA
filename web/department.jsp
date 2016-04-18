@@ -351,35 +351,35 @@
 
     <div class="midContent">
         <h1 class="title" style="font-size: 50px;margin-top: 0px;margin-bottom: 0px;color: #030303"
-            data-am-scrollspy="{animation:'scale-down'}">${sessionScope.department.name}</h1>
+            data-am-scrollspy="{animation:'scale-down'}">${requestScope.department.name}</h1>
 
         <div><p style="margin-top: 5vh;margin-bottom: 5vh"><b class="title" style="font-size: 20px;color: #085c9f"
-                                                              data-am-scrollspy="{animation:'scale-down',delay: 300}">${sessionScope.department.introduce}</b>
+                                                              data-am-scrollspy="{animation:'scale-down',delay: 300}">${requestScope.department.introduce}</b>
         </p></div>
         <div><p style="margin-top: 5vh;margin-bottom: 5vh"><b class="title" style="font-size: 20px;color: #085c9f"
-                                                              data-am-scrollspy="{animation:'scale-down',delay: 300}">${sessionScope.department.destination}</b>
+                                                              data-am-scrollspy="{animation:'scale-down',delay: 300}">${requestScope.department.destination}</b>
         </p></div>
     </div>
     <div id="teamwork" class="teamwork">
         <div class="container">
             <div class="team-head">
                 <h3>部门成员</h3>
-                <h4>${sessionScope.department.name}</h4>
+                <h4>${requestScope.department.name}</h4>
             </div>
             <div class="clients">
                 <div class="course_demo1">
                     <ul id="flexiselDemo1">
                         <c:choose>
-                        <c:when test="${empty sessionScope.members}">
+                        <c:when test="${empty requestScope.members}">
                         <tr>
                             <th colspan="6">还没有部员加入！</th>
                         </tr>
                         </c:when>
-                        <c:when test="${!empty sessionScope.members}">
-                        <c:forEach var="member" items="${sessionScope.members}" varStatus="status">
+                        <c:when test="${!empty requestScope.members}">
+                        <c:forEach var="member" items="${requestScope.members}" varStatus="status">
                         <li>
                             <div class="client">
-                                <img src="${sessionScope.path}${member.protrait}" style="width: 10vw; height: 10vw"/>
+                                <img src="${requestScope.path}${member.protrait}" style="width: 10vw; height: 10vw"/>
 
                                 <h3>${member.job}</h3>
                                 <h4>${member.name}</h4>
@@ -441,13 +441,13 @@
             <div class="service-grids">
 
                 <c:choose>
-                    <c:when test="${empty sessionScope.attaches}">
+                    <c:when test="${empty requestScope.attaches}">
                         <tr>
                             <th colspan="6">还没有添加部门职责！</th>
                         </tr>
                     </c:when>
-                    <c:when test="${!empty sessionScope.attaches}">
-                        <c:forEach var="attach" items="${sessionScope.attaches}" varStatus="status">
+                    <c:when test="${!empty requestScope.attaches}">
+                        <c:forEach var="attach" items="${requestScope.attaches}" varStatus="status">
                             <c:if test="${attach.type == 'responsibility'}">
                                 <div class="col-md-4 service-grid">
                                     <h4>${attach.content}</h4>
@@ -472,13 +472,13 @@
             <div class="service-grids">
 
                 <c:choose>
-                    <c:when test="${empty sessionScope.attaches}">
+                    <c:when test="${empty requestScope.attaches}">
                         <tr>
                             <th colspan="6">还没有添加部门职责！</th>
                         </tr>
                     </c:when>
-                    <c:when test="${!empty sessionScope.attaches}">
-                        <c:forEach var="attach" items="${sessionScope.attaches}" varStatus="status">
+                    <c:when test="${!empty requestScope.attaches}">
+                        <c:forEach var="attach" items="${requestScope.attaches}" varStatus="status">
                             <c:if test="${attach.type == 'responsibility'}">
                                 <div class="col-md-12 service-grid">
                                     <p style="color: #fff;font-size: 2.1rem">${attach.content}</p>

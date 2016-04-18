@@ -159,9 +159,9 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
             ministers.add(minister);
             System.out.println("minister" + minister.getId());
         }
-        session.put("releaseTeams", releaseTeams);
-        session.put("joinTeams", joinTeams);
-        session.put("ministers", ministers);
+        request.setAttribute("releaseTeams", releaseTeams);
+        request.setAttribute("joinTeams", joinTeams);
+        request.setAttribute("ministers", ministers);
 
         request.setAttribute("site", "siteGroup");
         return SUCCESS;
@@ -287,9 +287,9 @@ public class PersonAction extends ActionSupport implements ServletRequestAware, 
         List<Message> messages = messageService.retriveByPage(targetPage, person.getId());
 
         request.setAttribute("site", "siteMessage");
-        session.put("messages", messages);
-        session.put("pageSize", ConstantUtil.NUMBER_OF_RECORDS_IN_SITE_MESSAGE);
-        session.put("targetPage", targetPage);
+        request.setAttribute("messages", messages);
+        request.setAttribute("pageSize", ConstantUtil.NUMBER_OF_RECORDS_IN_SITE_MESSAGE);
+        request.setAttribute("targetPage", targetPage);
         return SUCCESS;
     }
 

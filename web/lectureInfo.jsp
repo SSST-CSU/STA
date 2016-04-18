@@ -25,7 +25,7 @@
 </head>
 <body>
 <div style="text-align: center;width: 100%;margin-top: 50px;height: auto">
-<h1>"${sessionScope.lecture.name}讲座"讲座参加者名单</h1>
+<h1>"${requestScope.lecture.name}讲座"讲座参加者名单</h1>
 
   <table class="am-table am-table-striped am-table-hover" style="margin-left: 20vw;width: 60vw;text-align: center">
     <thead>
@@ -39,11 +39,11 @@
     <tbody>
 
     <c:choose>
-      <c:when test="${empty sessionScope.participants}">
+      <c:when test="${empty requestScope.participants}">
         <span style="font-size: 2em">还没有人申请参加该讲座...</span>
       </c:when>
       <c:otherwise>
-        <c:forEach var="participant" items="${sessionScope.participants}" varStatus="status">
+        <c:forEach var="participant" items="${requestScope.participants}" varStatus="status">
           <tr>
             <td>${status.index+1}</td>
             <td>${participant.name}</td>
@@ -55,7 +55,7 @@
     </tbody>
   </table>
 
-  <a href="exportParticipants?id=${sessionScope.lecture.id}" class="button button-caution">下载名单</a>
+  <a href="exportParticipants?id=${requestScope.lecture.id}" class="button button-caution">下载名单</a>
   <button class="button button-caution" onclick="javascript:window.print();">打印名单</button>
 
 </div>

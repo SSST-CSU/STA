@@ -43,7 +43,7 @@
     <form class="am-form-inline" role="form">
         <div class="am-form-group">
             <input type="text" class="am-form-field button-block" placeholder="团队关键字……" id="searchKey"
-                   value="${sessionScope.key}">
+                   value="${requestScope.key}">
         </div>
         <a class="button button-royal button-rounded" href="javascript:retriveBykey()">搜索团队</a>
     </form>
@@ -60,19 +60,19 @@
         </tr>
         </thead>
         <tbody>
-        <c:if test="${sessionScope.teams != null}">
-            <c:forEach var="team" items="${sessionScope.teams}" varStatus="status">
+        <c:if test="${requestScope.teams != null}">
+            <c:forEach var="team" items="${requestScope.teams}" varStatus="status">
                 <tr style="vertical-align: middle">
                     <td>${team.name}
                     </td>
                     <td>${team.currentSize}/${team.teamSize}
                     </td>
-                    <td>${sessionScope.ministers[status.index].name}
+                    <td>${requestScope.ministers[status.index].name}
                     </td>
                     <td>${team.expiryDate}
                     </td>
                     <td><a class="button button-caution button-tiny" data-am-modal="{target: '#information'}"
-                           onclick="javascript:showDetail('${team.name}','${sessionScope.ministers[status.index].name}','${team.teamSize}','${team.currentSize}','${team.publishTime}','${team.introduce}','${team.expiryDate}','${team.id}')">Show</a>
+                           onclick="javascript:showDetail('${team.name}','${requestScope.ministers[status.index].name}','${team.teamSize}','${team.currentSize}','${team.publishTime}','${team.introduce}','${team.expiryDate}','${team.id}')">Show</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -82,16 +82,16 @@
     <ul class="am-pagination am-pagination-centered">
         <li><a href="javascript:previousPage()">&laquo;</a></li>
 
-        <c:forEach begin="${sessionScope.startAndEnd.start}" end="${sessionScope.startAndEnd.end}" varStatus="status">
+        <c:forEach begin="${requestScope.startAndEnd.start}" end="${requestScope.startAndEnd.end}" varStatus="status">
         <li
-        <c:if test="${status.index==sessionScope.targetPage}">
+        <c:if test="${status.index==requestScope.targetPage}">
                 class="am-active"
         </c:if>
-                ><a href="retriveTeamByPage?targetPage=${status.index}&key=${sessionScope.key}">${status.index}
+                ><a href="retriveTeamByPage?targetPage=${status.index}&key=${requestScope.key}">${status.index}
             </c:forEach>
             <li><a href="javascript:nextPage()">&raquo;</a></li>
-            <li>共${sessionScope.pageNumber}页，跳转到<input id="page" type="text"
-                                                       value="${sessionScope.targetPage}">页
+            <li>共${requestScope.pageNumber}页，跳转到<input id="page" type="text"
+                                                       value="${requestScope.targetPage}">页
                 <button id="changePage" class="button button-tiny button-pill button-primary button-caution"
                         style="margin-left: 1vh">确定
                 </button>
@@ -177,11 +177,11 @@
 
     $("#changePage").click(function () {
         var targetPage = $("#page").val().trim();
-        var pageNumber = ${sessionScope.pageNumber};
+        var pageNumber = ${requestScope.pageNumber};
         if (targetPage <= pageNumber && targetPage > 0) {
             var url = "retriveTeamByPage?targetPage=" + targetPage;
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }
@@ -192,33 +192,33 @@
     });
 
     function previousPage() {
-        if ((<s:property value="#session.targetPage"/>) <= 1) {
+        if ( ${requestScope.targetPage <= 1}) {
             var url = "retriveTeamByPage?targetPage=" + 1;
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }
         else {
-            var url = "retriveTeamByPage?targetPage=" + (<s:property value="#session.targetPage"/>-1);
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            var url = "retriveTeamByPage?targetPage=" + (${requestScope.targetPage}-1);
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }
     }
     function nextPage() {
-        if ((<s:property value="#session.targetPage"/>) >= (<s:property value="#session.pageNumber"/>)) {
-            var url = "retriveTeamByPage?targetPage=" + <s:property value="#session.pageNumber"/>;
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+        if (${requestScope.targetPage <= requestScope.pageNumber} ) {
+            var url = "retriveTeamByPage?targetPage=" + (${requestScope.pageNumber});
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }
         else {
-            var url = "retriveTeamByPage?targetPage=" + (<s:property value="#session.targetPage"/>+1);
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            var url = "retriveTeamByPage?targetPage=" + (${requestScope.targetPage}+1);
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }

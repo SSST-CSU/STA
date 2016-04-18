@@ -18,6 +18,7 @@ import service.CompetitionService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -73,7 +74,7 @@ public class AdminAction extends ActionSupport implements ServletRequestAware, S
             @Result(name = SUCCESS, location = "/admin-login.jsp")
     })
     public String adminlogout() throws Exception {
-        session.clear();
+        request.getSession().invalidate();
         return SUCCESS;
     }
 
@@ -96,11 +97,11 @@ public class AdminAction extends ActionSupport implements ServletRequestAware, S
     public String allAdmin() throws Exception {
 
         List<Admin> admins = adminService.retriveAll();
-        session.put("admins", admins);
+        request.setAttribute("admins", admins);
 
-        for (Admin admin : admins) {
+        /*for (Admin admin : admins) {
             System.out.println(admin.toString());
-        }
+        }*/
 
         request.setAttribute("admin", "admin-administrator");
 

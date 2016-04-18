@@ -37,22 +37,22 @@
     <div class="row clean">
         <div class="col-xs-12 col-sm-12 col-md-12 clean"
              style="font-size: 2rem;height: 8vh;line-height: 8vh;padding-left: 2vh">
-            <strong>${sessionScope.department.name}</strong>
+            <strong>${requestScope.department.name}</strong>
         </div>
     </div>
     <div class="row clean">
         <div class="col-xs-6 col-sm-6 col-md-6 clean" style="padding-left: 4vh">
             <div class="input-group" style="width: 100%; margin-bottom: 5vh">
                 <input id="dIntroduce" type="text" class="form-control" placeholder="头像文件临时路径"
-                       aria-describedby="basic-addon2" value="${sessionScope.department.introduce}">
+                       aria-describedby="basic-addon2" value="${requestScope.department.introduce}">
                                 <span class="input-group-addon btn btn-default"
-                                      onclick="modifyDepartmentTitle('${sessionScope.department.id}','#dIntroduce','introduce')">修改部门简介</span>
+                                      onclick="modifyDepartmentTitle('${requestScope.department.id}','#dIntroduce','introduce')">修改部门简介</span>
             </div>
             <div class="input-group" style="width: 100%; margin-bottom: 5vh">
                 <input id="dDestination" type="text" class="form-control" placeholder="头像文件临时路径"
-                       aria-describedby="basic-addon2" value="${sessionScope.department.destination}">
+                       aria-describedby="basic-addon2" value="${requestScope.department.destination}">
                                 <span class="input-group-addon btn btn-default"
-                                      onclick="modifyDepartmentTitle('${sessionScope.department.id}','#dDestination','destination')">修改部门目标</span>
+                                      onclick="modifyDepartmentTitle('${requestScope.department.id}','#dDestination','destination')">修改部门目标</span>
             </div>
         </div>
     </div>
@@ -64,17 +64,17 @@
     <div class="row clean" style="padding: 1vw">
 
         <c:choose>
-            <c:when test="${empty sessionScope.members}">
+            <c:when test="${empty requestScope.members}">
                 <tr>
                     <th colspan="6">还没有部员加入！</th>
                 </tr>
             </c:when>
-            <c:when test="${!empty sessionScope.members}">
-                <c:forEach var="member" items="${sessionScope.members}" varStatus="status">
+            <c:when test="${!empty requestScope.members}">
+                <c:forEach var="member" items="${requestScope.members}" varStatus="status">
                     <div class="col-xs-12 col-sm-2 col-md-2 clean text-center" style="margin: 1vw">
                         <div style="width: 10vw;height: 15vw;background-color: #ddd">
                             <div>
-                                <img src="${sessionScope.path}${member.protrait}"
+                                <img src="${requestScope.path}${member.protrait}"
                                      style="width: 10vw;height: 10vw;border: solid 1px #ddd">
                             </div>
                             <div style="height: 5vw; padding-top: 1px">
@@ -113,13 +113,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12 clean" style="font-size: 1.5rem;padding-left: 2vh">
 
             <c:choose>
-                <c:when test="${empty sessionScope.attaches}">
+                <c:when test="${empty requestScope.attaches}">
                     <tr>
                         <th colspan="6">还没有添加部门职责！</th>
                     </tr>
                 </c:when>
-                <c:when test="${!empty sessionScope.attaches}">
-                    <c:forEach var="attach" items="${sessionScope.attaches}" varStatus="status">
+                <c:when test="${!empty requestScope.attaches}">
+                    <c:forEach var="attach" items="${requestScope.attaches}" varStatus="status">
                         <c:if test="${attach.type == 'responsibility'}">
                             <div><span class="glyphicon glyphicon-minus"
                                        aria-hidden="true"
@@ -131,7 +131,7 @@
             </c:choose>
             <div>
                 <button class="btn btn-default" style="width: 30vw"
-                        onclick="newResponsibility('${sessionScope.department.name}')">添加
+                        onclick="newResponsibility('${requestScope.department.name}')">添加
                 </button>
             </div>
         </div>
@@ -144,13 +144,13 @@
     <div class="row clean" style="padding: 10px">
         <div class="col-xs-12 col-sm-12 col-md-12 clean" style="font-size: 1.5rem;padding-left: 2vh">
             <c:choose>
-                <c:when test="${empty sessionScope.attaches}">
+                <c:when test="${empty requestScope.attaches}">
                     <tr>
                         <th colspan="6">还没有添加部门成果！</th>
                     </tr>
                 </c:when>
-                <c:when test="${!empty sessionScope.attaches}">
-                    <c:forEach var="attach" items="${sessionScope.attaches}" varStatus="status">
+                <c:when test="${!empty requestScope.attaches}">
+                    <c:forEach var="attach" items="${requestScope.attaches}" varStatus="status">
                         <c:if test="${attach.type == 'achievement'}">
                             <div><span class="glyphicon glyphicon-minus"
                                        aria-hidden="true"
@@ -162,7 +162,7 @@
             </c:choose>
             <div>
                 <button class="btn btn-default" style="width: 30vw"
-                        onclick="newAchievement('${sessionScope.department.name}')">添加
+                        onclick="newAchievement('${requestScope.department.name}')">添加
                 </button>
             </div>
         </div>

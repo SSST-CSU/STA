@@ -37,7 +37,7 @@
 <div style="text-align: center;margin-top: 20px;margin-left: 10vw;margin-right: 10vw">
   <form class="am-form-inline" role="form">
     <div class="am-form-group">
-      <input type="text" class="am-form-field button-block" placeholder="比赛关键字……" id="searchKey" value="${sessionScope.key}">
+      <input type="text" class="am-form-field button-block" placeholder="比赛关键字……" id="searchKey" value="${requestScope.key}">
     </div>
     <a class="button button-royal button-rounded" id="searchBtn">搜索比赛</a>
   </form>
@@ -52,13 +52,13 @@
 
     <tbody>
     <c:choose>
-      <c:when test="${empty sessionScope.competitions}">
+      <c:when test="${empty requestScope.competitions}">
         <tr style="vertical-align: middle">
           <td>对不起，这里没有您想要的结果！</td>
         </tr>
       </c:when>
-      <c:when test="${!empty sessionScope.competitions}">
-        <c:forEach var="competition" items="${sessionScope.competitions}" varStatus="status">
+      <c:when test="${!empty requestScope.competitions}">
+        <c:forEach var="competition" items="${requestScope.competitions}" varStatus="status">
           <tr style="vertical-align: middle">
             <td>${competition.name}</td>
             <td>${competition.time}</td>
@@ -72,16 +72,16 @@
   <ul class="am-pagination am-pagination-centered">
     <li><a href="javascript:previousPage()">&laquo;</a></li>
 
-    <c:forEach begin="${sessionScope.startAndEnd.start}" end="${sessionScope.startAndEnd.end}" varStatus="status">
+    <c:forEach begin="${requestScope.startAndEnd.start}" end="${requestScope.startAndEnd.end}" varStatus="status">
     <li
-    <c:if test="${status.index==sessionScope.targetPage}">
+    <c:if test="${status.index==requestScope.targetPage}">
             class="am-active"
     </c:if>
-            ><a href="viewCompetition?targetPage=${status.index}&key=${sessionScope.key}">${status.index}
+            ><a href="viewCompetition?targetPage=${status.index}&key=${requestScope.key}">${status.index}
       </c:forEach>
       <li><a href="javascript:nextPage()">&raquo;</a></li>
-      <li>共${sessionScope.pageNumber}页，跳转到<input id="page" type="text"
-                                                 value="${sessionScope.targetPage}">页
+      <li>共${requestScope.pageNumber}页，跳转到<input id="page" type="text"
+                                                 value="${requestScope.targetPage}">页
         <button id="selectPageBtn" class="button button-tiny button-pill button-primary button-caution"
                 style="margin-left: 1vh">确定
         </button>
@@ -117,19 +117,19 @@
 </div>
 <script>
   function previousPage() {
-    if (${sessionScope.targetPage<=1}) {
-      window.location.href = "viewCompetition?targetPage=1&key=${sessionScope.key}";
+    if (${requestScope.targetPage<=1}) {
+      window.location.href = "viewCompetition?targetPage=1&key=${requestScope.key}";
     }
     else {
-      window.location.href = "viewCompetition?targetPage=${sessionScope.targetPage-1}&key=${sessionScope.key}";
+      window.location.href = "viewCompetition?targetPage=${requestScope.targetPage-1}&key=${requestScope.key}";
     }
   }
   function nextPage() {
-    if (${sessionScope.targetPage>=sessionScope.pageNumber}) {
-      window.location.href = "viewCompetition?targetPage=${sessionScope.pageNumber}&key=${sessionScope.key}";
+    if (${requestScope.targetPage>=requestScope.pageNumber}) {
+      window.location.href = "viewCompetition?targetPage=${requestScope.pageNumber}&key=${requestScope.key}";
     }
     else {
-      window.location.href = "viewCompetition?targetPage=${sessionScope.targetPage+1}&key=${sessionScope.key}";
+      window.location.href = "viewCompetition?targetPage=${requestScope.targetPage+1}&key=${requestScope.key}";
     }
   }
 
@@ -145,11 +145,11 @@
 
   $("#selectPageBtn").click(function () {
     var targetPage = $("#page").val().trim();
-    var pageNumber = ${sessionScope.pageNumber};
+    var pageNumber = ${requestScope.pageNumber};
     if (targetPage <= pageNumber && targetPage > 0) {
       var url = "viewCompetition?targetPage=" + targetPage;
-      if (${sessionScope.key!=null}) {
-        url += "&key=${sessionScope.key}";
+      if (${requestScope.key!=null}) {
+        url += "&key=${requestScope.key}";
       }
       window.location.href = url;
     }

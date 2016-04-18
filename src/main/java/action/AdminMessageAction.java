@@ -72,11 +72,11 @@ public class AdminMessageAction extends ActionSupport implements ServletRequestA
         }
         Map<String, Integer> startAndEnd = adMessageService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-        session.put("adMessages", adMessages);
-        session.put("pageNumber", pageNumber);
-        session.put("targetPage", targetPage);
-        session.put("startAndEnd", startAndEnd);
-        session.put("key", key);
+        request.setAttribute("adMessages", adMessages);
+        request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("targetPage", targetPage);
+        request.setAttribute("startAndEnd", startAndEnd);
+        request.setAttribute("key", key);
         request.setAttribute("admin", "admin-message");
 
         return SUCCESS;

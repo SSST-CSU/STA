@@ -60,7 +60,7 @@
         <hr style="width: 100%;border: black 2px groove">
 
         <div class="container-fluid">
-            <c:forEach var="message" items="${sessionScope.messages}" varStatus="status">
+            <c:forEach var="message" items="${requestScope.messages}" varStatus="status">
                 <c:choose>
                     <c:when test="${message.messageType == 1}">
                         <div class="row border-line">
@@ -235,10 +235,10 @@
 </div>
 <script>
     $("#prePageBtn").click(function () {
-        window.location.href = "siteMessage?targetPage=${sessionScope.targetPage-1}";
+        window.location.href = "siteMessage?targetPage=${requestScope.targetPage-1}";
     });
     $("#nextPageBtn").click(function () {
-        window.location.href = "siteMessage?targetPage=${sessionScope.targetPage+1}";
+        window.location.href = "siteMessage?targetPage=${requestScope.targetPage+1}";
     });
 
     function acceptApplication(messageId, personId, teamId) {
@@ -257,7 +257,7 @@
                 var option = {
                     "closeViaDimmer": false,
                     onConfirm: function () {
-                        window.location.href = "siteMessage?targetPage=${sessionScope.targetPage}";
+                        window.location.href = "siteMessage?targetPage=${requestScope.targetPage}";
                     }
                 };
                 $("#msg").modal(option);
@@ -285,7 +285,7 @@
                     var option = {
                         "closeViaDimmer": false,
                         onConfirm: function () {
-                            window.location.href = "siteMessage?targetPage=${sessionScope.targetPage}";
+                            window.location.href = "siteMessage?targetPage=${requestScope.targetPage}";
                         }
                     };
                     $("#msg").modal(option);

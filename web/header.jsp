@@ -73,7 +73,7 @@
         </s:if>
         <s:else>
             <div class="am-topbar-right">
-                <a href="personInfo.jsp">
+                <a href="sitePersonInfo.jsp">
                     <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="info"><s:property
                             value="#session.person.name"/>的个人中心</button>
                 </a>

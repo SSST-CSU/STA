@@ -75,10 +75,10 @@ public class DepartmentAction extends ActionSupport implements ServletRequestAwa
 
         String path = request.getContextPath() + "/";
         System.out.println(path);
-        session.put("path", path);
-        session.put("department", department);
-        session.put("members", members);
-        session.put("attaches", attaches);
+        request.setAttribute("path", path);
+        request.setAttribute("department", department);
+        request.setAttribute("members", members);
+        request.setAttribute("attaches", attaches);
 
         request.setAttribute("admin", "admin-sta");
 

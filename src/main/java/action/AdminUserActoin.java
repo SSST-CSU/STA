@@ -62,11 +62,11 @@ public class AdminUserActoin extends ActionSupport implements ServletRequestAwar
         }
         Map<String, Integer> startAndEnd = personService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-        session.put("persons", persons);
-        session.put("pageNumber", pageNumber);
-        session.put("targetPage", targetPage);
-        session.put("startAndEnd", startAndEnd);
-        session.put("key", key);
+        request.setAttribute("persons", persons);
+        request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("targetPage", targetPage);
+        request.setAttribute("startAndEnd", startAndEnd);
+        request.setAttribute("key", key);
         request.setAttribute("admin", "admin-user");
 
         return SUCCESS;

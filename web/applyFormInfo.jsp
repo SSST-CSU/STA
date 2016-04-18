@@ -29,7 +29,7 @@
                         <small id="usernameIsExist"></small>
                     </label><span id="usernameValidate" name="validate" class="am-icon-warning"></span>
                     <input type="text" class="" id="name" name="person.account" placeholder="必填!" disabled="disabled"
-                           value="${sessionScope.applyForm.name}">
+                           value="${requestScope.applyForm.name}">
                 </div>
 
                 <div class="am-form-group">
@@ -39,7 +39,7 @@
                                   name="validate"
                                   class="am-icon-warning"></span>
                     <input type="text" class="" name="sex" id="sex" placeholder="必填，只能填男或者女！" disabled="disabled"
-                           value="${sessionScope.applyForm.sex}"
+                           value="${requestScope.applyForm.sex}"
                             >
                 </div>
 
@@ -48,7 +48,7 @@
                         <small id="password2IsLegal"></small>
                     </label>
                     <input type="text" class="" id="political" placeholder="" disabled="disabled"
-                           value="${sessionScope.applyForm.political}"
+                           value="${requestScope.applyForm.political}"
                             >
                 </div>
 
@@ -58,7 +58,7 @@
                     </label><span id="nameValidate" name="validate"
                                   class="am-icon-warning"></span>
                     <input type="text" class="" name="person.name" id="place" placeholder="必填" disabled="disabled"
-                           value="${sessionScope.applyForm.place}"
+                           value="${requestScope.applyForm.place}"
                             >
                 </div>
                 <div class="am-form-group">
@@ -67,7 +67,7 @@
                     </label><span id="classesValidate" name="validate"
                                   class="am-icon-warning"></span>
                     <input type="text" class="" name="person.classes" id="classes" placeholder="必填" disabled="disabled"
-                           value="${sessionScope.applyForm.classes}"
+                           value="${requestScope.applyForm.classes}"
                             >
                 </div>
 
@@ -77,7 +77,7 @@
                     </label><span id="telValidate" name="validate"
                                   class="am-icon-warning"></span>
                     <input type="text" class="" name="person.tel" id="studentId" placeholder="必填" disabled="disabled"
-                           value="${sessionScope.applyForm.studentId}"
+                           value="${requestScope.applyForm.studentId}"
                             >
                 </div>
 
@@ -87,7 +87,7 @@
                     </label><span id="mailValidate" name="validate"
                                   class="am-icon-warning"></span>
                     <input type="email" class="" name="person.mail" id="qq" placeholder="必填" disabled="disabled"
-                           value="${sessionScope.applyForm.qq}"
+                           value="${requestScope.applyForm.qq}"
                             >
                 </div>
 
@@ -98,7 +98,7 @@
                     </label><span id="qqValidate" name="validate"
                                   class="am-icon-warning"></span>
                     <input type="text" class="" name="person.qq" id="tel" placeholder="必填" disabled="disabled"
-                           value="${sessionScope.applyForm.tel}"
+                           value="${requestScope.applyForm.tel}"
                             >
                 </div>
 
@@ -106,7 +106,7 @@
                     <label>曾任职务</label>
                     <small id="wechatValidator"></small>
                     <input type="text" class="" name="person.wechat" id="oldJob" placeholder="" disabled="disabled"
-                           value="${sessionScope.applyForm.oldJob}">
+                           value="${requestScope.applyForm.oldJob}">
                 </div>
 
                 <div class="am-form-group">
@@ -114,7 +114,7 @@
                     <span name="validate"
                           class="am-icon-warning"></span>
                     <input type="text" class="" name="person.hobby" id="swap" placeholder="必填,只能填是或否！"
-                           disabled="disabled" value="${sessionScope.applyForm.swap}">
+                           disabled="disabled" value="${requestScope.applyForm.swap}">
                 </div>
 
                 <div class="am-form-group">
@@ -122,39 +122,39 @@
                     <span name="validate"
                           class="am-icon-warning"></span>
                     <input type="text" class="" name="person.speciality" id="first" placeholder="必填，填写部门名称"
-                           disabled="disabled" value="${sessionScope.applyForm.first}">
+                           disabled="disabled" value="${requestScope.applyForm.first}">
                 </div>
 
                 <div class="am-form-group">
                     <label>第二志愿</label>
                     <input type="text" class="" rows="5" name="person.introduce" id="second" disabled="disabled"
-                           value="${sessionScope.applyForm.second}"/>
+                           value="${requestScope.applyForm.second}"/>
                 </div>
                 <div class="am-form-group">
                     <label>本人获奖情况及特长、技能</label>
                     <textarea class="" rows="5" name="person.introduce" id="award" disabled="disabled"
-                              >${sessionScope.applyForm.award}</textarea>
+                              >${requestScope.applyForm.award}</textarea>
                 </div>
                 <div class="am-form-group">
                     <label>学生干部工作的突出业绩</label>
                     <textarea class="" rows="5" name="person.introduce" id="achievement" disabled="disabled"
-                              >${sessionScope.applyForm.achievement}</textarea>
+                              >${requestScope.applyForm.achievement}</textarea>
                 </div>
                 <div class="am-form-group">
                     <label>对学院发展及对学生工作的建议</label>
                     <textarea class="" rows="5" name="person.introduce" id="advice" disabled="disabled"
-                              >${sessionScope.applyForm.advice}</textarea>
+                              >${requestScope.applyForm.advice}</textarea>
                 </div>
                 <div class="am-form-group">
                     <label>备注</label>
                     <textarea class="" rows="5" name="person.introduce" id="attach" disabled="disabled"
-                              >${sessionScope.applyForm.attach}</textarea>
+                              >${requestScope.applyForm.attach}</textarea>
                 </div>
 
                 <div class="am-form-group am-form-file">
                     <label>头像</label><br>
 
-                    <p style="text-align: center"><img id="avatar" src="${sessionScope.path}${sessionScope.applyForm.portrait}"
+                    <p style="text-align: center"><img id="avatar" src="${requestScope.path}${requestScope.applyForm.portrait}"
                                                        style="width: 200px;height: 200px;"/></p>
 
                     <p style="text-align: center">
@@ -172,7 +172,7 @@
 </body>
 <script>
     $("#confirmbtn").click(function(){
-        window.location.href = "exportApplyForm?id=${sessionScope.applyForm.id}";
+        window.location.href = "exportApplyForm?id=${requestScope.applyForm.id}";
     });
 
 </script>

@@ -98,13 +98,13 @@
 
   <div class="content">
     <p style="text-align: center"><img id="avatar" src="<%=request.getContextPath() +"/"+ ((Person)session.getAttribute("briefPersonInfo")).getProtrait()%>"></p>
-    <p><span style="text-shadow: 2px 2px 2px white;">姓名</span>：<s:property value="#session.briefPersonInfo.name"/></p>
-    <p><span style="text-shadow: 2px 2px 2px white;">班级</span>：<s:property value="#session.briefPersonInfo.classes"/></p>
-    <p><span style="text-shadow: 2px 2px 2px white;">QQ </span>：<s:property value="#session.briefPersonInfo.qq"/></p>
-    <p><span style="text-shadow: 2px 2px 2px white;">手机</span>：<s:property value="#session.briefPersonInfo.tel"/></p>
-    <p><span style="text-shadow: 2px 2px 2px white;">兴趣爱好</span>：<s:property value="#session.briefPersonInfo.hobby"/></p>
-    <p><span style="text-shadow: 2px 2px 2px white;">个人特长</span>：<s:property value="#session.briefPersonInfo.speciality"/></p>
-    <p><span style="text-shadow: 2px 2px 2px white;">个人说明</span>：<br><s:property value="#session.briefPersonInfo.introduce"/></p>
+    <p><span style="text-shadow: 2px 2px 2px white;">姓名</span>：${requestScope.briefPersonInfo.name}</p>
+    <p><span style="text-shadow: 2px 2px 2px white;">班级</span>：${requestScope.briefPersonInfo.classes}</p>
+    <p><span style="text-shadow: 2px 2px 2px white;">QQ </span>：${requestScope.briefPersonInfo.qq}</p>
+    <p><span style="text-shadow: 2px 2px 2px white;">手机</span>：${requestScope.briefPersonInfo.tel}</p>
+    <p><span style="text-shadow: 2px 2px 2px white;">兴趣爱好</span>：${requestScope.briefPersonInfo.hobby}</p>
+    <p><span style="text-shadow: 2px 2px 2px white;">个人特长</span>：${requestScope.briefPersonInfo.speciality}</p>
+    <p><span style="text-shadow: 2px 2px 2px white;">个人说明</span>：<br>${requestScope.briefPersonInfo.introduce}</p>
   </div>
 
 

@@ -72,11 +72,11 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
         }
         Map<String, Integer> startAndEnd = resourceService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-        session.put("resources", resources);
-        session.put("pageNumber", pageNumber);
-        session.put("targetPage", targetPage);
-        session.put("startAndEnd", startAndEnd);
-        session.put("key", key);
+        request.setAttribute("resources", resources);
+        request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("targetPage", targetPage);
+        request.setAttribute("startAndEnd", startAndEnd);
+        request.setAttribute("key", key);
         request.setAttribute("admin", "admin-resource");
 
         return SUCCESS;

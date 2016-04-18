@@ -40,8 +40,8 @@
     <form class="am-form-inline" role="form">
         <div class="am-form-group">
             <input type="text" class="am-form-field button-block" placeholder="讲座关键字……" id="searchKey"
-            <c:if test="${sessionScope.key != null}">
-                   value="${sessionScope.key}"
+            <c:if test="${requestScope.key != null}">
+                   value="${requestScope.key}"
             </c:if>>
         </div>
         <a class="button button-royal button-rounded" id="searchBtn" href="javascript:retriveBykey()">搜索讲座</a>
@@ -59,11 +59,11 @@
         <tbody>
 
         <c:choose>
-            <c:when test="${empty sessionScope.lectures}">
+            <c:when test="${empty requestScope.lectures}">
                 <span style="font-size: 2em">很抱歉，这里没有你想要的...</span>
             </c:when>
             <c:otherwise>
-                <c:forEach var="lecture" items="${sessionScope.lectures}" varStatus="status">
+                <c:forEach var="lecture" items="${requestScope.lectures}" varStatus="status">
                     <tr style="vertical-align: middle">
                         <td>${lecture.name}</td>
                         <td>${lecture.time}</td>
@@ -98,16 +98,16 @@
 <ul class="am-pagination am-pagination-centered">
     <li><a href="javascript:previousPage()">&laquo;</a></li>
 
-    <c:forEach begin="${sessionScope.startAndEnd.start}" end="${sessionScope.startAndEnd.end}" varStatus="status">
+    <c:forEach begin="${requestScope.startAndEnd.start}" end="${requestScope.startAndEnd.end}" varStatus="status">
     <li
-    <c:if test="${status.index==sessionScope.targetPage}">
+    <c:if test="${status.index==requestScope.targetPage}">
             class="am-active"
     </c:if>
-            ><a href="retriveLectureByPage?targetPage=${status.index}&key=${sessionScope.key}">${status.index}
+            ><a href="retriveLectureByPage?targetPage=${status.index}&key=${requestScope.key}">${status.index}
         </c:forEach>
         <li><a href="javascript:nextPage()">&raquo;</a></li>
-        <li>共${sessionScope.pageNumber}页，跳转到<input id="page" type="text"
-                                                   value="${sessionScope.targetPage}">页
+        <li>共${requestScope.pageNumber}页，跳转到<input id="page" type="text"
+                                                   value="${requestScope.targetPage}">页
             <button id="changePage" class="button button-tiny button-pill button-primary button-caution"
                     style="margin-left: 1vh">确定
             </button>
@@ -131,7 +131,7 @@
 
     function applyToJoinLecture(id) {
 
-        if (${sessionScope.person == null}) {
+        if (${requestScope.person == null}) {
             $("#msgContent").html("请先登录！");
             $("#msg").modal();
             return;
@@ -156,33 +156,33 @@
     }
 
     function previousPage() {
-        if ((<s:property value="#session.targetPage"/>) <= 1) {
+        if (${requestScope.targetPage<=1}) {
             var url = "retriveLectureByPage?targetPage=" + 1;
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }
         else {
-            var url = "retriveLectureByPage?targetPage=" + (<s:property value="#session.targetPage"/>-1);
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            var url = "retriveLectureByPage?targetPage=" + (${requestScope.targetPage-1});
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }
     }
     function nextPage() {
-        if ((<s:property value="#session.targetPage"/>) >= (<s:property value="#session.pageNumber"/>)) {
-            var url = "retriveLectureByPage?targetPage=" + <s:property value="#session.pageNumber"/>;
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+        if (${requestScope.targetPage>=requestScope.pageNumber}) {
+            var url = "retriveLectureByPage?targetPage=" + (${requestScope.pageNumber});
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }
         else {
-            var url = "retriveLectureByPage?targetPage=" + (<s:property value="#session.targetPage"/>+1);
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            var url = "retriveLectureByPage?targetPage=" + (${requestScope.targetPage+1});
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }
@@ -197,11 +197,11 @@
 
     $("#changePage").click(function () {
         var targetPage = $("#page").val().trim();
-        var pageNumber = ${sessionScope.pageNumber};
+        var pageNumber = ${requestScope.pageNumber};
         if (targetPage <= pageNumber && targetPage > 0) {
             var url = "retriveLectureByPage?targetPage=" + targetPage;
-            if (${sessionScope.key!=null}) {
-                url += "&key=${sessionScope.key}";
+            if (${requestScope.key!=null}) {
+                url += "&key=${requestScope.key}";
             }
             window.location.href = url;
         }

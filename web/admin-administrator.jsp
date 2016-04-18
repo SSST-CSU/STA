@@ -36,13 +36,13 @@
                 <tbody>
 
                 <c:choose>
-                    <c:when test="${empty sessionScope.admins}">
+                    <c:when test="${empty requestScope.admins}">
                         <tr>
                             <th colspan="6">很抱歉，没有您想要的数据！</th>
                         </tr>
                     </c:when>
-                    <c:when test="${!empty sessionScope.admins}">
-                        <c:forEach var="helloAdmin" items="${sessionScope.admins}" varStatus="status">
+                    <c:when test="${!empty requestScope.admins}">
+                        <c:forEach var="helloAdmin" items="${requestScope.admins}" varStatus="status">
                             <tr>
                                 <th scope="row">${status.index+1}</th>
                                 <td>${helloAdmin.name}</td>

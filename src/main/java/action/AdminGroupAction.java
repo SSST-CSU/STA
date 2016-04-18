@@ -76,12 +76,12 @@ public class AdminGroupAction extends ActionSupport implements ServletRequestAwa
 
             Map<String, Integer> startAndEnd = teamService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-            session.put("teams", teams);
-            session.put("ministers", ministers);//每个团队的队长
-            session.put("pageNumber", pageNumber);
-            session.put("targetPage", targetPage);
-            session.put("startAndEnd", startAndEnd);
-            session.put("key", key);
+            request.setAttribute("teams", teams);
+            request.setAttribute("ministers", ministers);//每个团队的队长
+            request.setAttribute("pageNumber", pageNumber);
+            request.setAttribute("targetPage", targetPage);
+            request.setAttribute("startAndEnd", startAndEnd);
+            request.setAttribute("key", key);
             request.setAttribute("admin", "admin-group");
         }
         return SUCCESS;
@@ -96,8 +96,8 @@ public class AdminGroupAction extends ActionSupport implements ServletRequestAwa
         Team team = teamService.retriveById(Integer.parseInt(id));
 
         Person minister = personService.retriveById(team.getMinisterId());
-        session.put("team", team);
-        session.put("minister", minister);
+        request.setAttribute("team", team);
+        request.setAttribute("minister", minister);
 
 
         request.setAttribute("admin", "admin-group-detail");

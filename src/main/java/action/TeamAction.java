@@ -98,15 +98,15 @@ public class TeamAction extends ActionSupport implements ServletRequestAware, Se
             }
 
             Map<String, Integer> startAndEnd = teamService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
-            session.put("startAndEnd", startAndEnd);
-            session.put("ministers", ministers);//每个团队的队长
-            session.put("targetPage", targetPage);//目标页的号码
-            session.put("pageNumber", pageNumber);//总页数
-            session.put("teams", teams);//团队信息数组
-            session.put("key", key);//将搜索关键字放回回话中去
-            session.put("retriveStatus", "success");//查询结果
+            request.setAttribute("startAndEnd", startAndEnd);
+            request.setAttribute("ministers", ministers);//每个团队的队长
+            request.setAttribute("targetPage", targetPage);//目标页的号码
+            request.setAttribute("pageNumber", pageNumber);//总页数
+            request.setAttribute("teams", teams);//团队信息数组
+            request.setAttribute("key", key);//将搜索关键字放回回话中去
+            request.setAttribute("retriveStatus", "success");//查询结果
         } else {
-            session.put("retriveStatus", "fail");//查询结果
+            request.setAttribute("retriveStatus", "fail");//查询结果
         }
         return SUCCESS;
     }

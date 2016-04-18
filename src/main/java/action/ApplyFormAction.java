@@ -106,9 +106,9 @@ public class ApplyFormAction extends ActionSupport implements ServletRequestAwar
 
             adMessageService.add(adMessage);
 
-            jsonObject.put("saveStatus", "success");
+            jsonObject.put("status", "success");
         } else {
-            jsonObject.put("saveStatus", "fail");
+            jsonObject.put("status", "fail");
         }
         response.getWriter().write(jsonObject.toString());
 
@@ -124,9 +124,9 @@ public class ApplyFormAction extends ActionSupport implements ServletRequestAwar
         applyForm = applyFormService.retriveById(id);
 
         String path = request.getContextPath() + "/";
-        session.put("path", path);
+        request.setAttribute("path", path);
 
-        session.put("applyForm", applyForm);
+        request.setAttribute("applyForm", applyForm);
 
         return SUCCESS;
     }

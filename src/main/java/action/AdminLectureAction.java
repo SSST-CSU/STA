@@ -59,11 +59,11 @@ public class AdminLectureAction extends ActionSupport implements ServletRequestA
         }
         Map<String, Integer> startAndEnd = lectureService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-        session.put("lectures", lectures);
-        session.put("pageNumber", pageNumber);
-        session.put("targetPage", targetPage);
-        session.put("startAndEnd", startAndEnd);
-        session.put("key", key);
+        request.setAttribute("lectures", lectures);
+        request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("targetPage", targetPage);
+        request.setAttribute("startAndEnd", startAndEnd);
+        request.setAttribute("key", key);
         request.setAttribute("admin", "admin-lecture");
 
         return SUCCESS;

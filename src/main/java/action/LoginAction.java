@@ -1,5 +1,6 @@
 package action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Person;
 import org.apache.struts2.convention.annotation.Action;
@@ -16,6 +17,7 @@ import service.PersonService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.Map;
 
@@ -63,7 +65,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     @Action(value = "logout", results = {
             @Result(name = ActionSupport.SUCCESS, location = "/index.jsp")})
     public String logout() throws Exception {
-        session.clear();
+        request.getSession().invalidate();
         return this.SUCCESS;
     }
 

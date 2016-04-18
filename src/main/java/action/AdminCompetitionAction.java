@@ -43,7 +43,7 @@ public class AdminCompetitionAction extends ActionSupport implements ServletRequ
             @Result(name = SUCCESS, location = "/admin-navigation.jsp")
     })
     public String viewCompetition() throws Exception {
-        System.out.println("key=" + key + "targetPage" + targetPage);
+        System.out.println("key=" + key + "\ntargetPage=" + targetPage);
 
         List<Competition> competitions;
         int pageNumber;
@@ -57,11 +57,11 @@ public class AdminCompetitionAction extends ActionSupport implements ServletRequ
         }
         Map<String, Integer> startAndEnd = competitionService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-        session.put("competitions", competitions);
-        session.put("pageNumber", pageNumber);
-        session.put("targetPage", targetPage);
-        session.put("startAndEnd", startAndEnd);
-        session.put("key", key);
+        request.setAttribute("competitions", competitions);
+        request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("targetPage", targetPage);
+        request.setAttribute("startAndEnd", startAndEnd);
+        request.setAttribute("key", key);
         request.setAttribute("admin", "admin-competition");
 
         return SUCCESS;

@@ -61,11 +61,11 @@ public class LectureAction extends ActionSupport implements ServletRequestAware,
         }
         Map<String, Integer> startAndEnd = lectureService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-        session.put("lectures", lectures);
-        session.put("pageNumber", pageNumber);
-        session.put("targetPage", targetPage);
-        session.put("startAndEnd", startAndEnd);
-        session.put("key", key);
+        request.setAttribute("lectures", lectures);
+        request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("targetPage", targetPage);
+        request.setAttribute("startAndEnd", startAndEnd);
+        request.setAttribute("key", key);
 
         return SUCCESS;
     }
@@ -100,8 +100,8 @@ public class LectureAction extends ActionSupport implements ServletRequestAware,
 
         System.out.println(participants.size());
 
-        session.put("participants", participants);
-        session.put("lecture", lecture);
+        request.setAttribute("participants", participants);
+        request.setAttribute("lecture", lecture);
 
         return SUCCESS;
 

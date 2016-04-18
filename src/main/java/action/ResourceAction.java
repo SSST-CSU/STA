@@ -52,11 +52,11 @@ public class ResourceAction extends ActionSupport implements ServletRequestAware
         }
         Map<String, Integer> startAndEnd = resourceService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
 
-        session.put("resources", resources);
-        session.put("pageNumber", pageNumber);
-        session.put("targetPage", targetPage);
-        session.put("startAndEnd", startAndEnd);
-        session.put("key", key);
+        request.setAttribute("resources", resources);
+        request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("targetPage", targetPage);
+        request.setAttribute("startAndEnd", startAndEnd);
+        request.setAttribute("key", key);
 
         return SUCCESS;
     }

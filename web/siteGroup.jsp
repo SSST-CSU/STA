@@ -76,7 +76,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="team" items="${sessionScope.releaseTeams}" varStatus="status">
+                                <c:forEach var="team" items="${requestScope.releaseTeams}" varStatus="status">
                                     <tr>
                                         <td>${status.index+1}</td>
                                         <td>${team.name}</td>
@@ -106,7 +106,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="team" items="${sessionScope.joinTeams}" varStatus="status">
+                                <c:forEach var="team" items="${requestScope.joinTeams}" varStatus="status">
                                     <tr>
                                         <td>${status.index+1}</td>
                                         <td>${team.name}</td>
@@ -114,8 +114,8 @@
                                         <td>${team.teamSize}</td>
                                         <td>${team.publishTime}</td>
                                         <td>${team.expiryDate}</td>
-                                        <td><a href="briefPersonInfo?id=${sessionScope.ministers[status.index].id}"
-                                               target="_blank">${sessionScope.ministers[status.index].name}</a></td>
+                                        <td><a href="briefPersonInfo?id=${requestScope.ministers[status.index].id}"
+                                               target="_blank">${requestScope.ministers[status.index].name}</a></td>
                                         <td><a href="javascript:joinGroupDetail(${team.id})">详情</a></td>
                                     </tr>
                                 </c:forEach>

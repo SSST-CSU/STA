@@ -33,31 +33,31 @@
                     <tbody>
                     <tr>
                         <td style="width: 20%">队伍名称</td>
-                        <td style="width: 80%">${sessionScope.team.name}</td>
+                        <td style="width: 80%">${requestScope.team.name}</td>
                     </tr>
                     <tr>
                         <td>队伍发起人</td>
-                        <td>${sessionScope.minister.name}</td>
+                        <td>${requestScope.minister.name}</td>
                     </tr>
                     <tr>
                         <td>队伍发布日期</td>
-                        <td>${sessionScope.team.publishTime}</td>
+                        <td>${requestScope.team.publishTime}</td>
                     </tr>
                     <tr>
                         <td>队伍截止日期</td>
-                        <td>${sessionScope.team.expiryDate}</td>
+                        <td>${requestScope.team.expiryDate}</td>
                     </tr>
                     <tr>
                         <td>队伍目标人数</td>
-                        <td>${sessionScope.team.teamSize}</td>
+                        <td>${requestScope.team.teamSize}</td>
                     </tr>
                     <tr>
                         <td>队伍目前人数</td>
-                        <td>${sessionScope.team.currentSize}</td>
+                        <td>${requestScope.team.currentSize}</td>
                     </tr>
                     <tr>
                         <td>简介</td>
-                        <td>${sessionScope.team.introduce}</td>
+                        <td>${requestScope.team.introduce}</td>
                     </tr>
                     </tbody>
                 </table>
