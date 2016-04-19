@@ -83,4 +83,6 @@ public interface PersonService {
 
     public String deletePerson(Person person);
 
+    public void update(Person person);
+
 }

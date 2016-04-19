@@ -145,4 +145,9 @@ public class PersonServiceImpl implements PersonService {
 
         return "success";
     }
+
+    @Override
+    public void update(Person person) {
+        personDao.update(person);
+    }
 }

@@ -218,6 +218,24 @@ public class AdminSTAAction extends ActionSupport implements ServletRequestAware
         response.getWriter().write(jsonObject.toString());
     }
 
+    @Action(value = "markUserAsSta")
+    public void markUserAsSta() throws Exception {
+        String personName = request.getParameter("personName");
+        String personId = request.getParameter("personId");
+        String departmentName = request.getParameter("departmentName");
+        String jobName = request.getParameter("jobName");
+
+        Person person = personService.retriveById(Integer.parseInt(personId));
+        person.setDepartment(departmentName);
+        person.setJob(jobName);
+        personService.update(person);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", "success");
+        response.getWriter().write(jsonObject.toString());
+
+    }
+
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
         request = httpServletRequest;

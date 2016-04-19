@@ -2,6 +2,7 @@ package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import domain.Admin;
+import domain.Person;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -15,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.AdminService;
 import service.CompetitionService;
+import service.PersonService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
