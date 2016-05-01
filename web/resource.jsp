@@ -197,7 +197,7 @@
         window.location.href = url;
     });
     function download(resourceId) {
-        if (${requestScope.person == null}) {
+        if (${sessionScope.person == null}) {
             $("#msgContent").html("没有登录的用户不能下载哦！");
             $("#joinMsg").modal({});
             return;
@@ -212,7 +212,8 @@
                 },//数据，这里使用的是Json格式进行传输
                 success: function (result) {//返回数据根据结果进行相应的处理
                     if (result.downloadStatus == 'ok') {
-                        window.location.href = "<%=request.getContextPath()%>"+"/"+result.downloadUrl;
+//                        alert(result.downloadUrl);
+                        window.location.href = result.downloadUrl;
                     }
                     else{
                         alert("下载失败！");

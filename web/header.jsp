@@ -53,38 +53,41 @@
                 <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle"
                         data-am-dropdown-toggle>其他 <span class="am-icon-caret-down"></span></button>
                 <ul class="am-dropdown-content">
-                    <s:if test="%{#session.person==null}">
-                        <li><a href="register.jsp">注册</a></li>
-                    </s:if>
-                    <s:else>
-                        <li><a href="groupRelease.jsp">发起组队</a></li>
-                        <li><a href="siteMessage.jsp">我的消息</a></li>
-                    </s:else>
+
+                    <c:choose>
+                        <c:when test="${empty sessionScope.person}">
+                            <li><a href="register.jsp">注册</a></li>
+                        </c:when>
+                        <c:when test="${!empty sessionScope.person}">
+                            <li><a href="groupRelease.jsp">发起组队</a></li>
+                            <li><a href="siteMessage.jsp">我的消息</a></li>
+                        </c:when>
+                    </c:choose>
                 </ul>
             </div>
         </div>
 
-        <s:if test="%{#session.person==null}">
-            <div class="am-topbar-right">
-                <a href="login.jsp">
-                    <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="login">登录</button>
-                </a>
-            </div>
-        </s:if>
-        <s:else>
-            <div class="am-topbar-right">
-                <a href="sitePersonInfo.jsp">
-                    <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="info"><s:property
-                            value="#session.person.name"/>的个人中心</button>
-                </a>
-            </div>
-            <div class="am-topbar-right">
-                <a href="logout">
-                    <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="logout">注销</button>
-                </a>
-            </div>
-        </s:else>
-
+        <c:choose>
+            <c:when test="${empty sessionScope.person}">
+                <div class="am-topbar-right">
+                    <a href="login.jsp">
+                        <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="login">登录</button>
+                    </a>
+                </div>
+            </c:when>
+            <c:when test="${!empty sessionScope.person}">
+                <div class="am-topbar-right">
+                    <a href="sitePersonInfo.jsp">
+                        <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="info">${sessionScope.person.name}的个人中心</button>
+                    </a>
+                </div>
+                <div class="am-topbar-right">
+                    <a href="logout">
+                        <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" id="logout">注销</button>
+                    </a>
+                </div>
+            </c:when>
+        </c:choose>
     </div>
 
 </div>

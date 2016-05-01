@@ -21,6 +21,8 @@ import service.DepartmentService;
 import service.PersonService;
 import util.ConstantUtil;
 import util.ImageUtils;
+import util.PathUtil;
+import util.PropertiesUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,9 +85,9 @@ public class AdminSTAAction extends ActionSupport implements ServletRequestAware
             System.out.println("portraitContentType:" + newMenberPortraitContentType);
             newMenberPortraitFileName = person.getName() + (dateFormat.format(new Date())) + "." + newMenberPortraitContentType;//存储的文件名称为用户账号名
 
-            String realpath = ServletActionContext.getServletContext().getRealPath("/person_portraits");
+//            String realpath = ServletActionContext.getServletContext().getRealPath("/person_portraits");
+            String realpath = PropertiesUtils.get("img_path");//头像存储路径
             /*System.out.println("realpath:" + realpath);*/
-
             File saveFile = new File(new File(realpath), newMenberPortraitFileName);
             if (!saveFile.getParentFile().exists()) {
                 System.out.println("目录不存在，重新创建目录！");
@@ -95,7 +97,8 @@ public class AdminSTAAction extends ActionSupport implements ServletRequestAware
             FileUtils.copyFile(newMenberPortrait, saveFile);
             String savePath = saveFile.getAbsolutePath();
             ImageUtils.scaleByHeightOrWodth(savePath, savePath, 200, -1);
-            person.setProtrait("person_portraits/" + newMenberPortraitFileName);
+
+            person.setProtrait(PathUtil.getImgPath() + newMenberPortraitFileName);
 
             personService.register(person);
 

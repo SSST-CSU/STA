@@ -22,7 +22,13 @@
     </filter>
     <filter-mapping>
         <filter-name>opensession</filter-name>
-        <url-pattern>*</url-pattern>
+        <url-pattern>/retriveTeamByPage</url-pattern>
+        <url-pattern>/retriveLectureByPage</url-pattern>
+        <url-pattern>/retriveDepartment</url-pattern>
+        <url-pattern>/siteGroupMessage</url-pattern>
+        <url-pattern>/siteMessage</url-pattern>
+        <url-pattern>/adminGroup</url-pattern>
+        <url-pattern>/adminStaDepartment</url-pattern>
     </filter-mapping>
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -32,13 +38,13 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <error-page>
+    <!--<error-page>
         <error-code>404</error-code>
         <location>/404.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
         <location>/500.jsp</location>
-    </error-page>
+    </error-page>-->
 
 </web-app>

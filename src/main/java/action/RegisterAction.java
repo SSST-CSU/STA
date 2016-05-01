@@ -16,6 +16,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.PersonService;
 import util.ImageUtils;
+import util.PathUtil;
+import util.PropertiesUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -59,11 +61,16 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
             portraitContentType = portraitFileName.substring(portraitFileName.lastIndexOf(".") + 1);//获得正真的文件类型
             portraitFileName = person.getAccount() + "." + portraitContentType;//存储的文件名称为用户账号名
 
-            String realpath = ServletActionContext.getServletContext().getRealPath("/person_portraits");//头像存储路径
+//            String realpath = ServletActionContext.getServletContext().getRealPath("/person_portraits");//头像存储路径
+            String realpath = PropertiesUtils.get("img_path");//头像存储路径
+            System.out.println("realpath:" + realpath);
             File saveFile = new File(new File(realpath), portraitFileName);//在存储路径下新建一个与头像名称以及类型一样的文件
             if (!saveFile.getParentFile().exists()) {
+                System.out.println(saveFile.getAbsolutePath()+1);
                 System.out.println("目录不存在，重新创建目录！");
+                System.out.println(saveFile.getAbsolutePath()+2);
                 saveFile.getParentFile().mkdirs();
+                System.out.println(saveFile.getAbsolutePath() + 3);
             }
             /*将头像文件复制到目标头像中去*/
             FileUtils.copyFile(portrait, saveFile);
@@ -71,7 +78,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
             String savePath = saveFile.getAbsolutePath();
             ImageUtils.scaleByHeightOrWodth(savePath,savePath,200,-1);
             /*设置用户头像的存储路径*/
-            person.setProtrait("person_portraits/" + portraitFileName);
+            person.setProtrait(PathUtil.getImgPath() + portraitFileName);
         }
         else{
             /*如果用户没有选择头像文件，则使用默认的头像文件*/

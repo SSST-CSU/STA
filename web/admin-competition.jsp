@@ -275,7 +275,7 @@
         $("#deleteConfirmBtn").click(function(){
             $.ajax({
                 type: "POST",  //提交方式
-                url: "adminDeleteResource",//路径
+                url: "adminDeleteCompetition",//路径
                 dataType: "json",//返回的json格式的数据
                 data: {
                     "id": id

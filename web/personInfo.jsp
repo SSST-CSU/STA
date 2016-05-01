@@ -98,7 +98,7 @@
   </ul>
 
   <div class="content">
-    <p style="text-align: center"><img id="avatar" src="<%=request.getContextPath() +"/"+ ((Person)session.getAttribute("person")).getProtrait()%>"></p>
+    <p style="text-align: center"><img id="avatar" src="${sessionScope.person.protrait}"></p>
     <p><span style="text-shadow: 2px 2px 2px white;">姓名</span>：<s:property value="#session.person.name"/></p>
     <p><span style="text-shadow: 2px 2px 2px white;">班级</span>：<s:property value="#session.person.classes"/></p>
     <p><span style="text-shadow: 2px 2px 2px white;">QQ </span>：<s:property value="#session.person.qq"/></p>

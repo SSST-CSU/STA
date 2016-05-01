@@ -9,6 +9,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.hibernate.Hibernate;
 import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -51,6 +52,8 @@ public class ResourceAction extends ActionSupport implements ServletRequestAware
             pageNumber = resourceService.retrivePageNumberOfKey(key);
         }
         Map<String, Integer> startAndEnd = resourceService.getStartAndEnd(Integer.parseInt(targetPage), pageNumber);
+
+        Hibernate.initialize(resources);
 
         request.setAttribute("resources", resources);
         request.setAttribute("pageNumber", pageNumber);

@@ -65,7 +65,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     @Action(value = "logout", results = {
             @Result(name = ActionSupport.SUCCESS, location = "/index.jsp")})
     public String logout() throws Exception {
-        request.getSession().invalidate();
+        session.clear();
         return this.SUCCESS;
     }
 

@@ -128,6 +128,18 @@
         </form>
     </div>
 </div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="joinMsg">
+    <div class="am-modal-dialog">
+        <center>
+            <h3>消息提示</h3>
+            <h6 id="msgContent">
+            </h6>
+        </center>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm id="confirmBtn">确定</span>
+        </div>
+    </div>
+</div>
 
 </body>
 

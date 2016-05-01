@@ -214,6 +214,8 @@
                                        role="button" aria-haspopup="true" aria-expanded="false"><span id="newMenberJob">职位</span><span
                                             class="caret"></span></a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDrop1">
+                                        <li><a onclick="select4('主席')">主席</a></li>
+                                        <li><a onclick="select4('副主席')">副主席</a></li>
                                         <li><a onclick="select4('部长')">部长</a></li>
                                         <li><a onclick="select4('副部长')">副部长</a></li>
                                         <li><a onclick="select4('干事')">干事</a></li>

@@ -131,7 +131,7 @@
 
     function applyToJoinLecture(id) {
 
-        if (${requestScope.person == null}) {
+        if (${sessionScope.person == null}) {
             $("#msgContent").html("请先登录！");
             $("#msg").modal();
             return;

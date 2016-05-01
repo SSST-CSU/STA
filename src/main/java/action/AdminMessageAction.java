@@ -2,6 +2,7 @@ package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import domain.ADMessage;
+import domain.Person;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -129,6 +130,10 @@ public class AdminMessageAction extends ActionSupport implements ServletRequestA
         JSONObject jsonObject = new JSONObject();
 
         if (personId!=null&&!personId.equals("")&&type!=null&&!type.equals("")&&content!=null&&!content.equals("")){
+
+            Person person = (Person) session.get("person");
+            content = person.getName()+"发来消息："+content;
+
             ADMessage adMessage = new ADMessage();
             adMessage.setContent(content);
             adMessage.setType(Integer.parseInt(type));

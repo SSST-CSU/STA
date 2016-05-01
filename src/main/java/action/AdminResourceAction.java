@@ -17,6 +17,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.ResourceService;
 import util.ConstantUtil;
 import util.ImageUtils;
+import util.PathUtil;
+import util.PropertiesUtils;
 import util.upload.UploadStatus;
 
 import javax.servlet.http.HttpServletRequest;
@@ -159,7 +161,8 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
             System.out.println("fileContentType:" + resourceContentType);
             resourceFileName = newNesource.getName() + "." + resourceContentType;//存储的文件名称为用户账号名
 
-            String realpath = ServletActionContext.getServletContext().getRealPath("/resource");
+//            String realpath = ServletActionContext.getServletContext().getRealPath("/resource");
+            String realpath = PropertiesUtils.get("res_path");
             /*System.out.println("realpath:" + realpath);*/
 
             File saveFile = new File(new File(realpath), resourceFileName);
@@ -171,7 +174,7 @@ public class AdminResourceAction extends ActionSupport implements ServletRequest
             FileUtils.copyFile(resource, saveFile);
             String savePath = saveFile.getAbsolutePath();
 
-            newNesource.setDownloadUrl("resource/" + resourceFileName);
+            newNesource.setDownloadUrl(PathUtil.getResPath()+resourceFileName);
             resourceService.add(newNesource);
 
             System.out.println(resource.toString());

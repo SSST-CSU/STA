@@ -21,9 +21,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.ADMessageService;
 import service.ApplyFormService;
 import service.PersonService;
-import util.ConstantUtil;
-import util.ImageUtils;
-import util.XwpfTUtil;
+import util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -80,7 +78,8 @@ public class ApplyFormAction extends ActionSupport implements ServletRequestAwar
             System.out.println("portraitContentType:" + portraitContentType);
             portraitFileName = (applyForm.getName() + dateFormat.format(new Date())) + "." + portraitContentType;//存储的文件名称为用户姓名加上时间
 
-            String realpath = ServletActionContext.getServletContext().getRealPath("/person_portraits");
+//            String realpath = ServletActionContext.getServletContext().getRealPath("/person_portraits");
+            String realpath = PropertiesUtils.get("img_path");
             /*System.out.println("realpath:" + realpath);*/
 
             File saveFile = new File(new File(realpath), portraitFileName);
@@ -93,7 +92,9 @@ public class ApplyFormAction extends ActionSupport implements ServletRequestAwar
             String savePath = saveFile.getAbsolutePath();
             ImageUtils.scaleByHeightOrWodth(savePath, savePath, 200, -1);
 
-            applyForm.setPortrait("person_portraits/" + portraitFileName);
+
+            applyForm.setPortrait(PathUtil.getImgPath()+ portraitFileName);
+
             applyFormService.add(applyForm);
 
             ADMessage adMessage = new ADMessage();
